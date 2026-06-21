@@ -1,0 +1,37 @@
+name: Update Lokerse Status Data
+
+on:
+  schedule:
+    # Elke 30 minuten
+    - cron: '*/30 * * * *'
+  workflow_dispatch:   # Handmatig triggeren mogelijk
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser requests
+
+      - name: Run data update script
+        run: python scripts/update_news.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "Lokerse Status Bot"
+          git config user.email "bot@lokerse-status.local"
+          git add data/
+          git commit -m "chore: auto-update news, weather & activity data [$(date)]" || echo "No changes to commit"
+          git push

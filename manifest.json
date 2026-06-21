@@ -1,0 +1,16 @@
+{
+  "name": "Lokerse Status",
+  "short_name": "Lokerse Status",
+  "description": "Real-time nieuws en statusdashboard voor Lokeren, Destelbergen, Laarne en Lochristi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/854/854878.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
