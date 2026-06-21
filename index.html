@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokerse Status • Nieuws &amp; Dashboard</title>
     
-    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0f172a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,20 +15,38 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
-        body { 
-            font-family: 'Inter', system_ui, sans-serif;
+        :root {
+            --font-sans: 'Inter', system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-feature-settings: "tnum" 1; /* tabular numbers */
             min-height: 100vh;
             overflow-x: hidden;
         }
-        .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
+
+        .font-display {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        h1, h2, .section-header {
+            font-family: var(--font-display);
+            letter-spacing: -0.03em;
+        }
+
+        .metric {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
 
         .dashboard-card {
             transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.2s;
         }
-        .dashboard-card:hover { transform: translateY(-2px); }
 
-        .section-header { font-size: 1.05rem; letter-spacing: -.025em; }
-        
         .news-list {
             max-height: 420px;
             overflow-y: auto;
@@ -47,16 +63,14 @@
         .ticker-content {
             display: inline-block;
             padding-left: 100%;
-            animation: ticker 35s linear infinite;
+            animation: ticker 38s linear infinite;
             color: #64748b;
             font-size: 0.875rem;
+            font-feature-settings: "tnum";
         }
         @keyframes ticker {
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
-        }
-        .ticker:hover .ticker-content {
-            animation-play-state: paused;
         }
 
         .chart-container {
@@ -81,7 +95,7 @@
                     </div>
                     <div>
                         <span class="font-display text-2xl font-semibold tracking-tighter">Lokerse Status</span>
-                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v2.1</span>
+                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v2.2</span>
                     </div>
                 </div>
 
@@ -109,13 +123,7 @@
     <!-- TICKER -->
     <div class="ticker w-full py-2 border-b border-slate-800">
         <div class="ticker-content">
-            • Lokerse Feestweek voorbereidingen in volle gang • 
-            Wonderwoudje geplant in Kalken • 
-            Paardenweides in topconditie • 
-            Crisisvrijwilligers gezocht • 
-            Rustig maar levendig in de Lokerse streek • 
-            Wegenwerken Oude Veldstraat (Lochristi) • 
-            Lokerse Status — met liefde voor de buurt
+            • Lokerse Feestweek voorbereidingen in volle gang • Wonderwoudje geplant in Kalken • Paardenweides in topconditie • Crisisvrijwilligers gezocht • Rustig maar levendig in de Lokerse streek • Wegenwerken Oude Veldstraat (Lochristi) • Lokerse Status — met liefde voor de buurt
         </div>
     </div>
 
@@ -147,18 +155,18 @@
         <!-- Main Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            <!-- LOKERSE RUST INDEX + GESCHIEDENIS -->
+            <!-- LOKERSE RUST INDEX -->
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="flex items-center justify-between mb-4">
                     <div>
-                        <div class="section-header font-semibold flex items-center gap-x-2">
+                        <div class="section-header font-semibold flex items-center gap-x-2 text-lg">
                             <i class="fa-solid fa-heart text-emerald-400"></i>
                             <span>LOKERSE RUST INDEX</span>
                         </div>
                         <div class="text-xs text-slate-500 mt-0.5">Hoe rustig is het vandaag in onze streek?</div>
                     </div>
                     <div class="text-right">
-                        <div id="activity-value" class="font-display text-6xl font-semibold tabular-nums text-emerald-400">--</div>
+                        <div id="activity-value" class="font-display text-6xl font-semibold tabular-nums text-emerald-400 metric">--</div>
                         <div class="text-emerald-400 text-xs -mt-1">/ 100</div>
                     </div>
                 </div>
@@ -190,13 +198,13 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">NIEUWSBERICHTEN</div>
-                        <div id="news-count" class="text-3xl font-semibold mt-1">--</div>
+                        <div id="news-count" class="text-3xl font-semibold mt-1 metric">--</div>
                         <div class="text-emerald-400 text-xs mt-0.5">laatste update</div>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">WEER</div>
                         <div class="flex items-baseline gap-x-1 mt-1">
-                            <span id="weather-temp" class="text-3xl font-semibold">--</span>
+                            <span id="weather-temp" class="text-3xl font-semibold metric">--</span>
                             <span class="text-emerald-400 text-sm">/ <span id="weather-min">--</span>°</span>
                         </div>
                         <div id="weather-desc" class="text-xs text-slate-400">Laden...</div>
@@ -204,7 +212,7 @@
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">WIND</div>
                         <div class="mt-1">
-                            <span id="weather-wind" class="text-3xl font-semibold">--</span>
+                            <span id="weather-wind" class="text-3xl font-semibold metric">--</span>
                             <span class="text-xs text-slate-400"> km/u</span>
                         </div>
                     </div>
@@ -218,7 +226,7 @@
                 </div>
             </div>
 
-            <!-- NIEUWS FEED (met max-height) -->
+            <!-- NIEUWS FEED -->
             <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card flex flex-col">
                 <div class="flex items-center justify-between mb-4">
                     <div class="section-header font-semibold flex items-center gap-x-2">
@@ -303,7 +311,7 @@
         <!-- Footer -->
         <div class="mt-10 pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
             <div>
-                Lokerse Status v2.1 • Automatisch bijgewerkt • Gemaakt met liefde voor de Lokerse streek door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
+                Lokerse Status v2.2 • Automatisch bijgewerkt • Gemaakt met liefde voor de Lokerse streek door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
             </div>
             <div class="flex items-center gap-x-4">
                 <a href="https://github.com/ddc9000/Lokerse-Status" class="hover:text-emerald-400 flex items-center gap-x-1.5">
@@ -524,7 +532,7 @@
             registerServiceWorker();
             setupKeyboard();
 
-            console.log('%c[Lokerse Status v2.1] Bugfix + ticker toegevoegd.', 'color:#64748b');
+            console.log('%c[Lokerse Status v2.2] Typography aligned with pizzint.watch style.', 'color:#64748b');
         }
 
         window.onload = initializeDashboard;
