@@ -9,7 +9,6 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,42 +17,77 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
-        body { font-family: 'Inter', system_ui, sans-serif; }
+        body { 
+            font-family: 'Inter', system_ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
         .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
 
         .dashboard-card {
             transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.2s;
         }
-        .dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .dashboard-card:hover { transform: translateY(-2px); }
 
         .section-header { font-size: 1.05rem; letter-spacing: -.025em; }
-        .news-item { transition: all 0.2s ease; }
-        .news-item:hover { background-color: #0f172a; }
-        .status-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        .metric-value { font-variant-numeric: tabular-nums; }
-        .tail-container { scrollbar-width: thin; scrollbar-color: #334155 #0f172a; }
         
-        .warm-text { color: #a3e635; }
+        .news-list {
+            max-height: 420px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #334155 #0f172a;
+        }
+
+        .ticker {
+            overflow: hidden;
+            white-space: nowrap;
+            background: #0f172a;
+            border-bottom: 1px solid #1e2937;
+        }
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 35s linear infinite;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .ticker:hover .ticker-content {
+            animation-play-state: paused;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 110px;
+            width: 100%;
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 8px;
+            border: 1px solid #1e2937;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <!-- Navbar -->
-    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-lg sticky top-0 z-50">
+    <nav class="border-b border-slate-800 bg-slate-950/90 backdrop-blur-lg sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto">
             <div class="px-8 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-x-3">
-                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-inner">
+                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center">
                         <i class="fa-solid fa-map-marker-alt text-white text-2xl"></i>
                     </div>
                     <div>
                         <span class="font-display text-2xl font-semibold tracking-tighter">Lokerse Status</span>
-                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v2.0</span>
+                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v2.1</span>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-x-5 text-sm">
                     <div class="flex items-center gap-x-2 text-emerald-400">
-                        <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full status-dot"></div>
+                        <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
                         <span class="font-mono text-xs tracking-[1px]">LIVE • AUTO</span>
                     </div>
                     
@@ -63,16 +97,29 @@
                     </div>
 
                     <button onclick="refreshAllData()" 
-                            class="flex items-center gap-x-2 px-5 py-2 text-xs font-medium bg-slate-900 hover:bg-emerald-950 border border-emerald-800 hover:border-emerald-700 rounded-2xl transition-all active:scale-[0.985]">
+                            class="flex items-center gap-x-2 px-5 py-2 text-xs font-medium bg-slate-900 hover:bg-emerald-950 border border-emerald-800 rounded-2xl transition-all active:scale-[0.985]">
                         <i class="fa-solid fa-sync-alt mr-1.5"></i>
-                        <span>VERNIEUW</span>
+                        <span>VERNIEUW DATA</span>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16">
+    <!-- TICKER -->
+    <div class="ticker w-full py-2 border-b border-slate-800">
+        <div class="ticker-content">
+            • Lokerse Feestweek voorbereidingen in volle gang • 
+            Wonderwoudje geplant in Kalken • 
+            Paardenweides in topconditie • 
+            Crisisvrijwilligers gezocht • 
+            Rustig maar levendig in de Lokerse streek • 
+            Wegenwerken Oude Veldstraat (Lochristi) • 
+            Lokerse Status — met liefde voor de buurt
+        </div>
+    </div>
+
+    <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-12">
         
         <!-- Header -->
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-8">
@@ -90,7 +137,7 @@
             <div class="flex items-center gap-x-3 text-sm">
                 <div class="bg-slate-900 border border-slate-800 rounded-3xl px-5 py-2 flex items-center gap-x-3">
                     <div>
-                        <div class="text-emerald-400 text-[10px] font-mono tracking-widest">LAATSTE DATA UPDATE</div>
+                        <div class="text-emerald-400 text-[10px] font-mono tracking-widest">LAATSTE UPDATE</div>
                         <div id="last-update" class="font-mono text-sm">--</div>
                     </div>
                 </div>
@@ -100,7 +147,7 @@
         <!-- Main Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            <!-- LOKERSE ACTIVITEIT INDEX + GESCHIEDENIS -->
+            <!-- LOKERSE RUST INDEX + GESCHIEDENIS -->
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="flex items-center justify-between mb-4">
                     <div>
@@ -124,12 +171,12 @@
                     Data wordt geladen...
                 </div>
 
-                <!-- 14-dagen geschiedenis grafiek -->
-                <div class="mt-6">
-                    <div class="flex items-center justify-between mb-2 px-1">
-                        <div class="text-xs font-medium text-slate-400">Laatste 14 dagen</div>
+                <!-- Gesloten grafiek kader -->
+                <div class="mt-5">
+                    <div class="text-xs font-medium text-slate-400 mb-2 px-1">Laatste 14 dagen</div>
+                    <div class="chart-container">
+                        <canvas id="history-chart"></canvas>
                     </div>
-                    <canvas id="history-chart" height="70" class="w-full"></canvas>
                 </div>
             </div>
 
@@ -171,7 +218,7 @@
                 </div>
             </div>
 
-            <!-- NIEUWS FEED -->
+            <!-- NIEUWS FEED (met max-height) -->
             <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card flex flex-col">
                 <div class="flex items-center justify-between mb-4">
                     <div class="section-header font-semibold flex items-center gap-x-2">
@@ -183,12 +230,12 @@
                     </a>
                 </div>
 
-                <div id="news-list" class="space-y-px flex-1 overflow-auto tail-container pr-1 text-sm">
+                <div id="news-list" class="news-list flex-1 pr-1 text-sm">
                     <!-- JS populated -->
                 </div>
             </div>
 
-            <!-- EVENEMENTEN & WARMTE -->
+            <!-- EVENEMENTEN -->
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="section-header font-semibold mb-4 flex items-center gap-x-2">
                     <i class="fa-solid fa-calendar-check text-violet-400"></i>
@@ -208,10 +255,6 @@
                         <div class="font-medium">Cultuurseizoen Lochristi</div>
                         <div class="text-emerald-400 text-xs mt-0.5">Zomer 2026 • Lochristi</div>
                     </div>
-                </div>
-                
-                <div class="mt-4 text-[10px] text-center text-slate-500">
-                    Voor de paardenweides, de poelen en de tuinen van onze streek
                 </div>
             </div>
 
@@ -243,7 +286,7 @@
                     <div>
                         <div class="section-header font-semibold mb-3 flex items-center gap-x-2">
                             <i class="fa-solid fa-link text-teal-400"></i>
-                            <span>SNELLE LINKS NAAR OFFICIËLE BRONNEN</span>
+                            <span>SNELLE LINKS</span>
                         </div>
                         <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
                             <a href="https://lokeren.be/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>lokeren.be</span></a>
@@ -258,9 +301,9 @@
         </div>
 
         <!-- Footer -->
-        <div class="mt-12 pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
+        <div class="mt-10 pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
             <div>
-                Lokerse Status v2.0 • Automatisch bijgewerkt • Gemaakt met liefde voor de Lokerse streek door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
+                Lokerse Status v2.1 • Automatisch bijgewerkt • Gemaakt met liefde voor de Lokerse streek door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
             </div>
             <div class="flex items-center gap-x-4">
                 <a href="https://github.com/ddc9000/Lokerse-Status" class="hover:text-emerald-400 flex items-center gap-x-1.5">
@@ -297,28 +340,23 @@
 
         async function loadData() {
             try {
-                // Parallel laden
                 const [newsRes, weatherRes, historyRes] = await Promise.all([
                     fetch('data/news.json').then(r => r.json()),
                     fetch('data/weather.json').then(r => r.json()),
                     fetch('data/activity_history.json').then(r => r.json())
                 ]);
 
-                // Nieuws
                 renderNews(newsRes.items || []);
                 const newsCountEl = document.getElementById('news-count');
                 if (newsCountEl) newsCountEl.textContent = newsRes.count || newsRes.items?.length || 0;
 
-                // Weer
                 renderWeather(weatherRes);
 
-                // Activiteit + Geschiedenis
                 if (historyRes && historyRes.length > 0) {
                     const latest = historyRes[historyRes.length - 1];
                     updateActivityIndex(latest.score, historyRes);
                 }
 
-                // Laatste update tijd
                 const updateEl = document.getElementById('last-update');
                 if (updateEl && newsRes.updated) {
                     const d = new Date(newsRes.updated);
@@ -327,7 +365,6 @@
 
             } catch (e) {
                 console.error('Fout bij laden data:', e);
-                // Fallback naar demo als JSON faalt
                 showFallbackData();
             }
         }
@@ -338,13 +375,13 @@
             container.innerHTML = '';
 
             if (!items || items.length === 0) {
-                container.innerHTML = `<div class="px-4 py-6 text-center text-slate-400 text-sm">Momenteel geen nieuwe berichten. Probeer later opnieuw.</div>`;
+                container.innerHTML = `<div class="px-4 py-6 text-center text-slate-400 text-sm">Momenteel geen nieuwe berichten.</div>`;
                 return;
             }
 
             items.forEach(item => {
                 const div = document.createElement('div');
-                div.className = `news-item px-4 py-3.5 border-b border-slate-800 last:border-b-0 flex gap-x-4 cursor-pointer`;
+                div.className = `px-4 py-3.5 border-b border-slate-800 last:border-b-0 flex gap-x-4 cursor-pointer hover:bg-slate-950`;
                 div.innerHTML = `
                     <div class="flex-1 min-w-0">
                         <div class="font-medium text-slate-100 leading-tight">${item.title}</div>
@@ -367,25 +404,21 @@
 
         function renderWeather(weather) {
             if (!weather) return;
-
-            // Snel overzicht
             const tempEl = document.getElementById('weather-temp');
             const minEl = document.getElementById('weather-min');
             const descEl = document.getElementById('weather-desc');
             const windEl = document.getElementById('weather-wind');
+            const detail = document.getElementById('weather-detail');
 
             if (tempEl) tempEl.textContent = weather.temp;
             if (minEl) minEl.textContent = weather.min;
             if (descEl) descEl.textContent = weather.description;
             if (windEl) windEl.textContent = weather.windspeed || '--';
 
-            // Detail sectie
-            const detail = document.getElementById('weather-detail');
             if (detail) {
                 detail.innerHTML = `
                     <div class="flex justify-between"><span>Vandaag</span> <span class="font-medium">${weather.temp}° / ${weather.min}° • ${weather.description}</span></div>
                     <div class="flex justify-between text-xs text-slate-400"><span>Wind</span> <span>${weather.windspeed || 8} km/u</span></div>
-                    <div class="flex justify-between text-xs text-slate-400 pt-1 border-t border-slate-800"><span>Bron</span> <span>Open-Meteo + KMI data</span></div>
                 `;
             }
         }
@@ -400,11 +433,10 @@
 
             let desc = "Rustig in de streek. ";
             if (score > 65) desc = "Drukke dag! Veel nieuws en leven in de buurt. ";
-            else if (score > 45) desc = "Normale activiteit. Goede balans tussen rust en gebeurtenissen. ";
+            else if (score > 45) desc = "Normale activiteit. Goede balans. ";
             
             if (descEl) descEl.innerHTML = desc + "Voor de paardenweides, de tuinen en de poelen van onze streek.";
 
-            // Render geschiedenis grafiek
             renderHistoryChart(historyData);
         }
 
@@ -412,9 +444,7 @@
             const ctx = document.getElementById('history-chart');
             if (!ctx || !historyData || historyData.length === 0) return;
 
-            if (activityChart) {
-                activityChart.destroy();
-            }
+            if (activityChart) activityChart.destroy();
 
             const labels = historyData.map(d => d.label);
             const scores = historyData.map(d => d.score);
@@ -427,33 +457,28 @@
                         label: 'Rust Index',
                         data: scores,
                         borderColor: '#34d399',
-                        backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                        backgroundColor: 'rgba(52, 211, 153, 0.12)',
                         borderWidth: 2.5,
                         tension: 0.35,
                         fill: true,
-                        pointRadius: 0,
-                        pointHoverRadius: 4
+                        pointRadius: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { color: '#1e2937', tickLength: 4 }, ticks: { color: '#64748b', font: { size: 10 } } },
+                        x: { grid: { color: '#1e2937' }, ticks: { color: '#64748b', font: { size: 10 } } },
                         y: { min: 0, max: 100, grid: { color: '#1e2937' }, ticks: { color: '#64748b', stepSize: 25, font: { size: 9 } } }
-                    },
-                    elements: { line: { borderJoinStyle: 'round' } }
+                    }
                 }
             });
         }
 
         function showFallbackData() {
-            // Simpele fallback als JSON niet laadt
-            const newsContainer = document.getElementById('news-list');
-            if (newsContainer) {
-                newsContainer.innerHTML = `<div class="px-4 py-4 text-sm text-slate-400">Kon data niet laden. Probeer de pagina te vernieuwen.</div>`;
-            }
+            const container = document.getElementById('news-list');
+            if (container) container.innerHTML = `<div class="px-4 py-6 text-center text-slate-400 text-sm">Kon data niet laden. Probeer later opnieuw.</div>`;
         }
 
         async function refreshAllData() {
@@ -462,12 +487,11 @@
 
             try {
                 await loadData();
-                // Kleine visuele feedback
                 const toast = document.createElement('div');
-                toast.className = `fixed bottom-6 right-6 bg-emerald-900 border border-emerald-700 text-emerald-200 px-5 py-3 rounded-2xl text-sm flex items-center gap-x-3 shadow-xl`;
-                toast.innerHTML = `<i class="fa-solid fa-check-circle"></i><span>Data vernieuwd vanuit bronnen</span>`;
+                toast.className = `fixed bottom-6 right-6 bg-emerald-900 border border-emerald-700 text-emerald-200 px-5 py-3 rounded-2xl text-sm flex items-center gap-x-3`;
+                toast.innerHTML = `<i class="fa-solid fa-check-circle"></i><span>Data vernieuwd</span>`;
                 document.body.appendChild(toast);
-                setTimeout(() => { toast.style.transition = 'all .3s'; toast.style.opacity = '0'; setTimeout(() => toast.remove(), 200); }, 1800);
+                setTimeout(() => { toast.style.transition = 'all .3s'; toast.style.opacity = '0'; setTimeout(() => toast.remove(), 200); }, 1600);
             } catch(e) {
                 console.error(e);
             } finally {
@@ -477,11 +501,10 @@
 
         function registerServiceWorker() {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js').catch(console.error);
+                navigator.serviceWorker.register('sw.js').catch(() => {});
             }
         }
 
-        // Keyboard shortcut
         function setupKeyboard() {
             document.addEventListener('keydown', function(e) {
                 if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'r') {
@@ -501,7 +524,7 @@
             registerServiceWorker();
             setupKeyboard();
 
-            console.log('%c[Lokerse Status v2.0] Klaar. Met liefde voor de streek.', 'color:#64748b');
+            console.log('%c[Lokerse Status v2.1] Bugfix + ticker toegevoegd.', 'color:#64748b');
         }
 
         window.onload = initializeDashboard;
