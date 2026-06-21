@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokerse Status • Nieuws & Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --accent: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .dashboard-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .section-header {
+            font-size: 1.05rem;
+            letter-spacing: -.025em;
+        }
+
+        .news-item {
+            transition: all 0.2s ease;
+        }
+        .news-item:hover {
+            background-color: #0f172a;
+        }
+
+        .status-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .tail-container {
+            scrollbar-width: thin;
+            scrollbar-color: #334155 #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-inner">
+                        <i class="fa-solid fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-2xl font-semibold tracking-tighter">Lokerse Status</span>
+                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v1.0</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-x-6 text-sm">
+                    <div class="flex items-center gap-x-2 text-emerald-400">
+                        <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full status-dot"></div>
+                        <span class="font-mono text-xs tracking-[1px]">LIVE</span>
+                    </div>
+                    
+                    <div class="hidden md:flex items-center gap-x-2 text-slate-400 text-xs font-mono">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="live-clock">--:--</span>
+                        <span class="text-slate-600">CEST</span>
+                    </div>
+
+                    <button onclick="refreshData()" 
+                            class="flex items-center gap-x-2 px-4 py-2 text-xs font-medium bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-2xl transition-colors active:scale-[0.985]">
+                        <i class="fa-solid fa-sync-alt mr-1.5"></i>
+                        <span>VERNIEUW DATA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16">
+        
+        <!-- Header / Status Bar -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-8">
+            <div>
+                <div class="flex items-center gap-x-3">
+                    <h1 class="font-display text-5xl tracking-tighter font-semibold">Lokeren &amp; Regio</h1>
+                    <div class="px-3 py-1 bg-emerald-950 text-emerald-400 text-xs font-mono rounded-2xl border border-emerald-800 flex items-center gap-x-1.5">
+                        <i class="fa-solid fa-globe fa-sm"></i>
+                        <span>OOST-VLAANDEREN</span>
+                    </div>
+                </div>
+                <p class="text-slate-400 mt-1.5 text-lg">Real-time overzicht van nieuws, events en activiteit in Lokeren, Destelbergen, Laarne &amp; Lochristi</p>
+            </div>
+
+            <div class="flex items-center gap-x-3 text-sm">
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl px-5 py-2 flex items-center gap-x-3">
+                    <div>
+                        <div class="text-emerald-400 text-[10px] font-mono tracking-widest">LAATSTE UPDATE</div>
+                        <div id="last-update" class="font-mono text-sm">21 JUN 2026, 03:35</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- LOKERSE ACTIVITEIT INDEX -->
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <div class="section-header font-semibold flex items-center gap-x-2">
+                            <i class="fa-solid fa-chart-line text-emerald-400"></i>
+                            <span>LOKERSE ACTIVITEIT INDEX</span>
+                        </div>
+                        <div class="text-xs text-slate-500 mt-0.5">Fun proxy gebaseerd op nieuwsvolume + events + sociale activiteit</div>
+                    </div>
+                    <div class="text-right">
+                        <div id="activity-value" class="font-display text-6xl font-semibold tabular-nums text-emerald-400">47</div>
+                        <div class="text-emerald-400 text-xs -mt-1">/ 100</div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-800 rounded-full h-3 mb-4 overflow-hidden">
+                    <div id="activity-bar" 
+                         class="h-3 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full transition-all duration-700"
+                         style="width: 47%"></div>
+                </div>
+
+                <div class="flex justify-between text-xs">
+                    <div class="text-emerald-400 font-medium">Rustig</div>
+                    <div class="text-center text-slate-400">Normaal</div>
+                    <div class="text-right text-amber-400 font-medium">Druk / Actief</div>
+                </div>
+
+                <div class="mt-5 text-xs bg-slate-950 border border-slate-800 rounded-2xl p-4 text-slate-400">
+                    Vandaag matig actief. Lokerse Feestweek voorbereidingen + enkele lokale initiatieven. 
+                    Weinig grote incidenten gemeld.
+                </div>
+            </div>
+
+            <!-- SNEL OVERZICHT -->
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
+                <div class="section-header font-semibold mb-4 flex items-center gap-x-2">
+                    <i class="fa-solid fa-bolt text-amber-400"></i>
+                    <span>SNEL OVERZICHT</span>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+                        <div class="text-xs text-slate-500">NIEUWSBERICHTEN</div>
+                        <div class="text-3xl font-semibold mt-1">18</div>
+                        <div class="text-emerald-400 text-xs mt-0.5">vandaag</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+                        <div class="text-xs text-slate-500">EVENEMENTEN</div>
+                        <div class="text-3xl font-semibold mt-1">7</div>
+                        <div class="text-emerald-400 text-xs mt-0.5">deze week</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+                        <div class="text-xs text-slate-500">WEER</div>
+                        <div class="flex items-baseline gap-x-1 mt-1">
+                            <span class="text-3xl font-semibold">19°</span>
+                            <span class="text-emerald-400 text-sm">/ 12°</span>
+                        </div>
+                        <div class="text-xs text-slate-400">Licht bewolkt</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+                        <div class="text-xs text-slate-500">ALERT LEVEL</div>
+                        <div class="mt-1 flex items-center gap-x-2">
+                            <span class="px-3 py-1 text-xs font-medium bg-emerald-900 text-emerald-300 rounded-2xl">LAAG</span>
+                        </div>
+                        <div class="text-xs text-emerald-400 mt-1">Geen bijzondere meldingen</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NIEUWS FEED -->
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="section-header font-semibold flex items-center gap-x-2">
+                        <i class="fa-solid fa-newspaper text-sky-400"></i>
+                        <span>LAATSTE NIEUWS</span>
+                    </div>
+                    <a href="https://lokeren.be/nieuws" target="_blank" 
+                       class="text-xs flex items-center gap-x-1 text-sky-400 hover:text-sky-300">
+                        ALLES <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div id="news-list" class="space-y-px flex-1 overflow-auto tail-container pr-1 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- EVENEMENTEN -->
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
+                <div class="section-header font-semibold mb-4 flex items-center gap-x-2">
+                    <i class="fa-solid fa-calendar-check text-violet-400"></i>
+                    <span>EVENEMENTEN DEZE WEEK</span>
+                </div>
+
+                <div id="events-list" class="space-y-3 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- WEER & PRAKTISCH -->
+            <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <div>
+                        <div class="section-header font-semibold mb-3 flex items-center gap-x-2">
+                            <i class="fa-solid fa-cloud-sun text-amber-400"></i>
+                            <span>WEER &amp; OMGEVING</span>
+                        </div>
+                        <div class="text-sm space-y-2 text-slate-300">
+                            <div class="flex justify-between"><span>Vandaag</span> <span class="font-medium">19° / 12° • Licht bewolkt</span></div>
+                            <div class="flex justify-between"><span>Morgen</span> <span class="font-medium">22° / 13° • Zonnig</span></div>
+                            <div class="flex justify-between text-xs text-slate-400 pt-1 border-t border-slate-800"><span>Bron:</span> <span>KMI / lokale data</span></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="section-header font-semibold mb-3 flex items-center gap-x-2">
+                            <i class="fa-solid fa-road text-orange-400"></i>
+                            <span>VERKEER &amp; WEGENWERKEN</span>
+                        </div>
+                        <div class="text-sm text-slate-300">
+                            <div class="mb-1.5">• Tijdelijke maatregelen Lokerse Feestweek (31 jul - 9 aug)</div>
+                            <div class="mb-1.5">• Wegenwerken Oude Veldstraat (Lochristi)</div>
+                            <div class="text-xs text-emerald-400">Geen grote files gemeld op N70 / E17</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="section-header font-semibold mb-3 flex items-center gap-x-2">
+                            <i class="fa-solid fa-link text-teal-400"></i>
+                            <span>SNELLE LINKS</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+                            <a href="https://lokeren.be/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>lokeren.be</span></a>
+                            <a href="https://laarne.be/nieuws" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>laarne.be/nieuws</span></a>
+                            <a href="https://www.lochristi.be/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>lochristi.be</span></a>
+                            <a href="https://www.nieuwsblad.be/regio/oost-vlaanderen/waasland/lokeren" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-newspaper w-4"></i> <span>Nieuwsblad Lokeren</span></a>
+                            <a href="https://www.hln.be/lokeren" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-newspaper w-4"></i> <span>HLN Lokeren</span></a>
+                            <a href="https://www.eventbrite.com/d/belgium--lokeren/events/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-ticket w-4"></i> <span>Events Lokeren</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
+            <div>
+                Lokerse Status v1.0 • Demo data • Gemaakt voor de buurt door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
+            </div>
+            <div class="flex items-center gap-x-4">
+                <a href="https://github.com/ddc9000/Lokerse-Status" class="hover:text-emerald-400 flex items-center gap-x-1.5">
+                    <i class="fa-brands fa-github"></i> <span>GitHub Repo</span>
+                </a>
+                <span class="text-slate-700">•</span>
+                <span>Data van officiële bronnen • Respecteer hun voorwaarden</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#10b981');
+            
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif']
+                        }
+                    }
+                }
+            };
+        }
+
+        // Live clock
+        function updateClock() {
+            const clockEl = document.getElementById('live-clock');
+            if (!clockEl) return;
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('nl-BE', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
+            clockEl.textContent = timeString;
+        }
+
+        // Update last update time
+        function updateLastUpdate() {
+            const el = document.getElementById('last-update');
+            if (!el) return;
+            const now = new Date();
+            el.textContent = now.toLocaleDateString('nl-BE', { 
+                day: 'numeric', month: 'short', year: 'numeric' 
+            }).toUpperCase() + ', ' + 
+            now.toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Demo news data
+        let demoNews = [
+            {
+                title: "Tijdelijke verkeersmaatregelen tijdens Lokerse Feestweek",
+                source: "Stad Lokeren",
+                time: "vandaag",
+                desc: "Van 31 juli t.e.m. 9 augustus gelden er aangepaste verkeersregels in het centrum.",
+                link: "https://lokeren.be/nieuws/2026/06/17/tijdelijke-verkeers-maatregelen-tijdens-de-lokerse-feestweek-van-31-juli-t-e-m-9-augustus"
+            },
+            {
+                title: "Infomoment: Word crisisvrijwilliger",
+                source: "Stad Lokeren",
+                time: "gisteren",
+                desc: "Het lokaal bestuur organiseert een infomoment voor wie zich wil inzetten als crisisvrijwilliger.",
+                link: "https://lokeren.be/nieuws/2026/06/16/infomoment-word-crisisvrijwilliger"
+            },
+            {
+                title: "Tweede Wonderwoudje in Kalken met herdenkingsplek",
+                source: "Lokaal Bestuur Laarne",
+                time: "recent",
+                desc: "Samen met buurtbewoners en BOS+ werd een tweede Wonderwoudje aangeplant.",
+                link: "https://laarne.be/nieuws"
+            },
+            {
+                title: "Wegenwerken Oude Veldstraat (Lochristi)",
+                source: "Lokaal Bestuur Lochristi",
+                time: "recent",
+                desc: "Herstellingswerken aan de weg tussen Laarne en Lochristi.",
+                link: "https://www.lochristi.be/"
+            },
+            {
+                title: "AP3X en Acid Neal brengen WK-anthem uit",
+                source: "HLN Lokeren",
+                time: "recent",
+                desc: "Regionale artiesten lanceren een anthem voor de Rode Duivels.",
+                link: "https://www.hln.be/lokeren"
+            }
+        ];
+
+        // Render news
+        function renderNews(newsArray) {
+            const container = document.getElementById('news-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            newsArray.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `news-item px-4 py-3.5 border-b border-slate-800 last:border-b-0 flex gap-x-4 cursor-pointer`;
+                div.innerHTML = `
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium text-slate-100 leading-tight">${item.title}</div>
+                        <div class="text-xs text-slate-400 mt-1 flex items-center gap-x-2">
+                            <span class="font-mono">${item.source}</span> 
+                            <span class="text-slate-600">•</span> 
+                            <span>${item.time}</span>
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1 line-clamp-2">${item.desc}</div>
+                    </div>
+                    <div class="flex-shrink-0 pt-1">
+                        <a href="${item.link}" target="_blank" 
+                           class="text-emerald-400 hover:text-emerald-300">
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Demo events
+        let demoEvents = [
+            { title: "Lokerse Feestweek 2026", date: "31 jul – 9 aug", location: "Lokeren centrum" },
+            { title: "Infomoment Crisisvrijwilligers", date: "Binnenkort", location: "Lokeren" },
+            { title: "Tractorsluis Heistraat", date: "Lopend", location: "Laarne / Lochristi grens" },
+            { title: "Cultuurseizoen Lochristi", date: "Zomer 2026", location: "Lochristi" }
+        ];
+
+        function renderEvents(eventsArray) {
+            const container = document.getElementById('events-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            eventsArray.forEach(ev => {
+                const div = document.createElement('div');
+                div.className = `flex justify-between items-start bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3`;
+                div.innerHTML = `
+                    <div>
+                        <div class="font-medium text-sm">${ev.title}</div>
+                        <div class="text-emerald-400 text-xs mt-0.5">${ev.date}</div>
+                    </div>
+                    <div class="text-right text-xs text-slate-400 pt-0.5">${ev.location}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Activity index logic
+        let currentActivity = 47;
+
+        function updateActivityIndex(newValue) {
+            currentActivity = Math.max(10, Math.min(95, newValue));
+            
+            const valueEl = document.getElementById('activity-value');
+            const barEl = document.getElementById('activity-bar');
+            
+            if (valueEl) valueEl.textContent = currentActivity;
+            if (barEl) barEl.style.width = currentActivity + '%';
+
+            // Update description based on value
+            const descContainer = document.querySelector('#activity-value').parentElement.parentElement.querySelector('.bg-slate-950');
+            if (descContainer) {
+                let text = "Vandaag matig actief. ";
+                if (currentActivity < 35) text = "Rustige dag in de regio. Weinig grote gebeurtenissen.";
+                else if (currentActivity > 70) text = "Drukke periode! Veel evenementen en nieuws.";
+                descContainer.innerHTML = text + " Lokerse Feestweek voorbereidingen spelen mee.";
+            }
+        }
+
+        // Main refresh function
+        function refreshData() {
+            const btns = document.querySelectorAll('button');
+            btns.forEach(b => b.disabled = true);
+
+            // Simulate loading
+            setTimeout(() => {
+                // Randomize activity a bit
+                const newActivity = currentActivity + (Math.random() * 16 - 8);
+                updateActivityIndex(Math.round(newActivity));
+
+                // Shuffle news a little
+                const shuffledNews = [...demoNews].sort(() => Math.random() - 0.5).slice(0, 5);
+                renderNews(shuffledNews);
+
+                // Update timestamp
+                updateLastUpdate();
+
+                // Optional toast
+                showToast();
+
+                btns.forEach(b => b.disabled = false);
+            }, 650);
+        }
+
+        function showToast() {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 right-6 bg-slate-900 border border-emerald-800 text-emerald-300 px-5 py-3 rounded-2xl text-sm flex items-center gap-x-3 shadow-xl`;
+            toast.innerHTML = `
+                <i class="fa-solid fa-check-circle"></i>
+                <span>Data vernieuwd (demo)</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 200);
+            }, 2200);
+        }
+
+        // Initialize everything
+        function initializeDashboard() {
+            initializeTailwind();
+            
+            // Clock
+            updateClock();
+            setInterval(updateClock, 30000);
+            
+            // Last update
+            updateLastUpdate();
+            
+            // Render initial data
+            renderNews(demoNews);
+            renderEvents(demoEvents);
+            
+            // Set initial activity
+            const bar = document.getElementById('activity-bar');
+            if (bar) bar.style.width = currentActivity + '%';
+            
+            // Keyboard shortcut
+            document.addEventListener('keydown', function(e) {
+                if (e.key.toLowerCase() === 'r' && (e.metaKey || e.ctrlKey)) {
+                    e.preventDefault();
+                    refreshData();
+                }
+            });
+
+            // Welcome console message
+            console.log('%c[Lokerse Status] Dashboard initialized. Druk Ctrl/Cmd + R om data te vernieuwen.', 'color:#64748b');
+        }
+
+        // Boot
+        window.onload = function() {
+            initializeDashboard();
+        };
+    </script>
+</body>
+</html>
