@@ -1,9 +1,9 @@
 {
-  "temp": 29,
-  "windspeed": 15.1,
-  "weathercode": 0,
-  "description": "Helder",
-  "max": 39,
-  "min": 26,
-  "updated": "2026-06-25T23:01:54.903512"
+  "temp": 35,
+  "windspeed": 7.6,
+  "weathercode": 3,
+  "description": "Bewolkt",
+  "max": 37,
+  "min": 25,
+  "updated": "2026-06-26T10:39:04.809194"
 }
