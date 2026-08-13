@@ -1,9 +1,9 @@
 {
-  "temp": 35,
-  "windspeed": 5.0,
-  "weathercode": 2,
-  "description": "Gedeeltelijk bewolkt",
+  "temp": 34,
+  "windspeed": 1.1,
+  "weathercode": 0,
+  "description": "Helder",
   "max": 35,
   "min": 18,
-  "updated": "2026-08-13T16:14:34.972034"
+  "updated": "2026-08-13T17:24:45.403829"
 }
