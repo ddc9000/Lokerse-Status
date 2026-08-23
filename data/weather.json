@@ -1,9 +1,9 @@
 {
-  "temp": 13,
-  "windspeed": 4.7,
-  "weathercode": 1,
-  "description": "Overwegend helder",
+  "temp": 14,
+  "windspeed": 5.0,
+  "weathercode": 0,
+  "description": "Helder",
   "max": 21,
   "min": 11,
-  "updated": "2026-08-23T06:17:44.398742"
+  "updated": "2026-08-23T07:07:24.672324"
 }
