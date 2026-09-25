@@ -1,9 +1,9 @@
 {
-  "temp": 14,
-  "windspeed": 6.5,
-  "weathercode": 2,
-  "description": "Gedeeltelijk bewolkt",
+  "temp": 12,
+  "windspeed": 6.8,
+  "weathercode": 3,
+  "description": "Bewolkt",
   "max": 25,
   "min": 11,
-  "updated": "2026-09-24T23:35:28.180758"
+  "updated": "2026-09-25T02:00:50.963756"
 }
