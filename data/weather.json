@@ -1,9 +1,9 @@
 {
-  "temp": 14,
-  "windspeed": 20.2,
-  "weathercode": 51,
-  "description": "Lichte motregen",
+  "temp": 13,
+  "windspeed": 11.5,
+  "weathercode": 1,
+  "description": "Overwegend helder",
   "max": 16,
-  "min": 12,
-  "updated": "2026-10-08T01:22:10.769231"
+  "min": 11,
+  "updated": "2026-10-08T07:34:06.377490"
 }
