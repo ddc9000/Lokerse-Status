@@ -13,7 +13,7 @@ De site gebruikt relatieve paden (`./`, `data/…`, `manifest.json`). Ze werkt d
 ## Wat je ziet
 
 - Nieuws uit Vlaamse en regionale feeds, filterbaar per provincie, per gemeente en via **Lokerse streek**
-- Kaart van Vlaanderen (OpenStreetMap via CARTO), gecentreerd op het gewest
+- Kaart van Vlaanderen (OpenStreetMap), gecentreerd op het gewest
 - Weer per provincie via Open-Meteo, met Lokeren als station voor de Lokerse streek
 - Verkeersmeldingen van het Vlaams Verkeerscentrum (DATEX II)
 - Vlaamse rustindex en de bestaande 14-dagen grafiek
@@ -90,4 +90,4 @@ De code hoeft daarvoor niet aangepast te worden.
 
 ## Met dank
 
-Gebouwd met zorg door ddc9000. Weer: Open-Meteo. Verkeer: Verkeerscentrum Vlaanderen (CC BY). Kaart: OpenStreetMap-bijdragers en CARTO.
+Gebouwd met zorg door ddc9000. Weer: Open-Meteo. Verkeer: Verkeerscentrum Vlaanderen (CC BY). Kaart: OpenStreetMap-bijdragers. De donkere CARTO-tegels vragen intussen een API-sleutel en worden daarom niet gebruikt.

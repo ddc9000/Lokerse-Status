@@ -36,7 +36,8 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
 
   const isData = url.pathname.includes('/data/');
-  if (isData) {
+  const isShell = event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
+  if (isData || isShell) {
     event.respondWith(
       fetch(event.request)
         .then(response => {

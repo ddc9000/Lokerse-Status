@@ -85,15 +85,21 @@
             border: 1px solid #1e2937;
         }
 
+        .map-shell {
+            position: relative;
+            z-index: 0;
+            isolation: isolate;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .leaflet-tile-pane {
+            filter: brightness(0.62) saturate(0.75) contrast(1.05);
+        }
         #map {
             height: 340px;
             width: 100%;
             background: #020617;
-            border-radius: 1rem;
-            z-index: 0;
         }
-        .leaflet-pane { z-index: 1; }
-        .leaflet-top, .leaflet-bottom { z-index: 2; }
         .leaflet-popup-content-wrapper, .leaflet-popup-tip {
             background: #0f172a;
             color: #e2e8f0;
@@ -206,7 +212,7 @@
                         <span class="flex items-center gap-x-1.5"><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400"></span> Verkeer</span>
                     </div>
                 </div>
-                <div id="map"></div>
+                <div class="map-shell"><div id="map"></div></div>
             </div>
 
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
@@ -931,10 +937,9 @@
         function initMap() {
             if (state.map || typeof L === 'undefined') return;
             const map = L.map('map', { scrollWheelZoom: false, zoomControl: true });
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OpenStreetMap &copy; CARTO',
-                subdomains: 'abcd',
-                maxZoom: 18
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                maxZoom: 19
             }).addTo(map);
             state.map = map;
             state.cityLayer = L.layerGroup().addTo(map);
