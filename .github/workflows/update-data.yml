@@ -1,4 +1,4 @@
-name: Update Lokerse Status Data
+name: Update Vlaamse Status Data
 
 on:
   schedule:
@@ -22,16 +22,15 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: |
-          pip install feedparser requests
+        run: pip install -r requirements.txt
 
       - name: Run data update script
         run: python scripts/update_news.py
 
       - name: Commit and push updated data
         run: |
-          git config user.name "Lokerse Status Bot"
-          git config user.email "bot@lokerse-status.local"
+          git config user.name "Vlaamse Status Bot"
+          git config user.email "bot@vlaamse-status.local"
           git add data/
           git commit -m "chore: auto-update news, weather & activity data [$(date)]" || echo "No changes to commit"
           git push
