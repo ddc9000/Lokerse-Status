@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lokerse Status • Nieuws &amp; Dashboard</title>
-    
+    <title>Vlaamse Status • Nieuws &amp; Dashboard</title>
+    <meta name="description" content="Vlaamse Status — real-time nieuws- en statusdashboard voor heel Vlaanderen, met Lokeren, Destelbergen, Laarne en Lochristi in de kijker.">
+
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0f172a">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-        
+
         :root {
             --font-sans: 'Inter', system_ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --font-display: 'Space Grotesk', 'Inter', system_ui, sans-serif;
@@ -22,7 +24,7 @@
 
         body {
             font-family: var(--font-sans);
-            font-feature-settings: "tnum" 1; /* tabular numbers */
+            font-feature-settings: "tnum" 1;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -48,7 +50,7 @@
         }
 
         .news-list {
-            max-height: 420px;
+            max-height: 480px;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #334155 #0f172a;
@@ -63,7 +65,7 @@
         .ticker-content {
             display: inline-block;
             padding-left: 100%;
-            animation: ticker 38s linear infinite;
+            animation: ticker 48s linear infinite;
             color: #64748b;
             font-size: 0.875rem;
             font-feature-settings: "tnum";
@@ -82,20 +84,52 @@
             padding: 8px;
             border: 1px solid #1e2937;
         }
+
+        .map-shell {
+            position: relative;
+            z-index: 0;
+            isolation: isolate;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        #map {
+            height: 340px;
+            width: 100%;
+            background: #020617;
+        }
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 12px;
+            box-shadow: none;
+            border: 1px solid #1e2937;
+        }
+        .leaflet-popup-content { margin: 10px 12px; }
+        .leaflet-control-attribution {
+            background: rgba(15, 23, 42, 0.85) !important;
+            color: #64748b !important;
+            font-size: 10px !important;
+        }
+        .leaflet-control-attribution a { color: #94a3b8 !important; }
+
+        .region-chip.active {
+            background: #022c22;
+            color: #6ee7b7;
+            border-color: #065f46;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
-    <!-- Navbar -->
     <nav class="border-b border-slate-800 bg-slate-950/90 backdrop-blur-lg sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto">
-            <div class="px-8 py-4 flex items-center justify-between">
+            <div class="px-4 sm:px-8 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-x-3">
                     <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center">
                         <i class="fa-solid fa-map-marker-alt text-white text-2xl"></i>
                     </div>
                     <div>
-                        <span class="font-display text-2xl font-semibold tracking-tighter">Lokerse Status</span>
-                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v2.2</span>
+                        <span class="font-display text-2xl font-semibold tracking-tighter">Vlaamse Status</span>
+                        <span class="text-emerald-400 text-xs font-mono ml-1.5 align-super">v3.0</span>
                     </div>
                 </div>
 
@@ -104,13 +138,13 @@
                         <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
                         <span class="font-mono text-xs tracking-[1px]">LIVE • AUTO</span>
                     </div>
-                    
+
                     <div class="hidden md:flex items-center gap-x-2 text-slate-400 text-xs font-mono">
                         <i class="fa-regular fa-clock"></i>
                         <span id="live-clock">--:--</span>
                     </div>
 
-                    <button onclick="refreshAllData()" 
+                    <button id="refresh-btn" onclick="refreshAllData()"
                             class="flex items-center gap-x-2 px-5 py-2 text-xs font-medium bg-slate-900 hover:bg-emerald-950 border border-emerald-800 rounded-2xl transition-all active:scale-[0.985]">
                         <i class="fa-solid fa-sync-alt mr-1.5"></i>
                         <span>VERNIEUW DATA</span>
@@ -120,26 +154,24 @@
         </div>
     </nav>
 
-    <!-- TICKER -->
     <div class="ticker w-full py-2 border-b border-slate-800">
-        <div class="ticker-content">
-            • Lokerse Feestweek voorbereidingen in volle gang • Wonderwoudje geplant in Kalken • Paardenweides in topconditie • Crisisvrijwilligers gezocht • Rustig maar levendig in de Lokerse streek • Wegenwerken Oude Veldstraat (Lochristi) • Lokerse Status — met liefde voor de buurt
+        <div id="ticker-content" class="ticker-content">
+            • Vlaamse Status — met liefde voor de mensen, paarden, tuinen en poelen, van de Lokerse streek tot de kust en de Kempen •
         </div>
     </div>
 
-    <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-12">
-        
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-8">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 pt-8 pb-12">
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-5">
             <div>
-                <div class="flex items-center gap-x-3">
-                    <h1 class="font-display text-5xl tracking-tighter font-semibold">Lokeren &amp; Regio</h1>
+                <div class="flex items-center gap-x-3 flex-wrap">
+                    <h1 id="region-title" class="font-display text-4xl sm:text-5xl tracking-tighter font-semibold">Vlaanderen</h1>
                     <div class="px-3 py-1 bg-emerald-950 text-emerald-400 text-xs font-mono rounded-2xl border border-emerald-800 flex items-center gap-x-1.5">
                         <i class="fa-solid fa-globe fa-sm"></i>
-                        <span>OOST-VLAANDEREN</span>
+                        <span id="region-badge">VIJF PROVINCIES</span>
                     </div>
                 </div>
-                <p class="text-slate-400 mt-1.5 text-lg">Real-time overzicht • Met liefde voor de mensen, paarden, tuinen en poelen van de Lokerse streek</p>
+                <p id="region-subtitle" class="text-slate-400 mt-1.5 text-lg">Real-time overzicht voor heel Vlaanderen • Met liefde voor de mensen, paarden, tuinen en poelen — de Lokerse streek blijft één klik verwijderd</p>
             </div>
 
             <div class="flex items-center gap-x-3 text-sm">
@@ -152,18 +184,42 @@
             </div>
         </div>
 
-        <!-- Main Grid -->
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
+            <div id="region-filters" class="flex flex-wrap gap-2"></div>
+            <label class="lg:ml-auto flex items-center gap-2 text-xs text-slate-400">
+                <span class="font-mono tracking-wider">GEMEENTE</span>
+                <select id="city-filter" class="bg-slate-900 border border-slate-800 text-slate-200 rounded-2xl px-3 py-2 text-sm min-w-[12rem]">
+                    <option value="">Alle gemeenten</option>
+                </select>
+            </label>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- LOKERSE RUST INDEX -->
+
+            <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-7 dashboard-card">
+                <div class="flex items-center justify-between mb-4 gap-3">
+                    <div class="section-header font-semibold flex items-center gap-x-2">
+                        <i class="fa-solid fa-map text-emerald-400"></i>
+                        <span>KAART VAN VLAANDEREN</span>
+                    </div>
+                    <div class="flex items-center gap-x-3 text-[11px] text-slate-400">
+                        <span class="flex items-center gap-x-1.5"><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Lokerse streek</span>
+                        <span class="flex items-center gap-x-1.5"><span class="inline-block w-2.5 h-2.5 rounded-full bg-sky-400"></span> Stad</span>
+                        <span class="hidden bg-amber-900 text-amber-200 text-amber-300"></span>
+                        <span class="flex items-center gap-x-1.5"><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400"></span> Verkeer</span>
+                    </div>
+                </div>
+                <div class="map-shell"><div id="map"></div></div>
+            </div>
+
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <div class="section-header font-semibold flex items-center gap-x-2 text-lg">
                             <i class="fa-solid fa-heart text-emerald-400"></i>
-                            <span>LOKERSE RUST INDEX</span>
+                            <span>VLAAMSE RUST INDEX</span>
                         </div>
-                        <div class="text-xs text-slate-500 mt-0.5">Hoe rustig is het vandaag in onze streek?</div>
+                        <div id="activity-kicker" class="text-xs text-slate-500 mt-0.5">Hoe rustig is het vandaag in Vlaanderen?</div>
                     </div>
                     <div class="text-right">
                         <div id="activity-value" class="font-display text-6xl font-semibold tabular-nums text-emerald-400 metric">--</div>
@@ -179,27 +235,25 @@
                     Data wordt geladen...
                 </div>
 
-                <!-- Gesloten grafiek kader -->
                 <div class="mt-5">
-                    <div class="text-xs font-medium text-slate-400 mb-2 px-1">Laatste 14 dagen</div>
+                    <div class="text-xs font-medium text-slate-400 mb-2 px-1">Vlaanderen • laatste 14 dagen</div>
                     <div class="chart-container">
                         <canvas id="history-chart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- SNEL OVERZICHT -->
             <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="section-header font-semibold mb-4 flex items-center gap-x-2">
                     <i class="fa-solid fa-bolt text-amber-400"></i>
                     <span>SNEL OVERZICHT</span>
                 </div>
-                
+
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">NIEUWSBERICHTEN</div>
                         <div id="news-count" class="text-3xl font-semibold mt-1 metric">--</div>
-                        <div class="text-emerald-400 text-xs mt-0.5">laatste update</div>
+                        <div id="news-count-note" class="text-emerald-400 text-xs mt-0.5">in beeld</div>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">WEER</div>
@@ -219,54 +273,35 @@
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
                         <div class="text-xs text-slate-500">ALERT LEVEL</div>
                         <div class="mt-2">
-                            <span class="px-3.5 py-1 text-xs font-medium bg-emerald-900 text-emerald-300 rounded-2xl">LAAG</span>
+                            <span id="alert-badge" class="px-3.5 py-1 text-xs font-medium bg-emerald-900 text-emerald-300 rounded-2xl">LAAG</span>
                         </div>
-                        <div class="text-xs text-emerald-400 mt-1.5">Geen bijzondere meldingen</div>
+                        <div id="alert-note" class="text-xs text-emerald-400 mt-1.5">Geen bijzondere meldingen</div>
                     </div>
                 </div>
             </div>
 
-            <!-- NIEUWS FEED -->
             <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card flex flex-col">
                 <div class="flex items-center justify-between mb-4">
                     <div class="section-header font-semibold flex items-center gap-x-2">
                         <i class="fa-solid fa-newspaper text-sky-400"></i>
-                        <span>LAATSTE NIEUWS UIT DE REGIO</span>
+                        <span id="news-heading">LAATSTE NIEUWS</span>
                     </div>
-                    <a href="https://lokeren.be/nieuws" target="_blank" class="text-xs flex items-center gap-x-1 text-sky-400 hover:text-sky-300">
+                    <a id="news-more" href="https://www.vrt.be/vrtnws/nl/" target="_blank" rel="noopener" class="text-xs flex items-center gap-x-1 text-sky-400 hover:text-sky-300">
                         MEER <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
 
-                <div id="news-list" class="news-list flex-1 pr-1 text-sm">
-                    <!-- JS populated -->
-                </div>
+                <div id="news-list" class="news-list flex-1 pr-1 text-sm"></div>
             </div>
 
-            <!-- EVENEMENTEN -->
             <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="section-header font-semibold mb-4 flex items-center gap-x-2">
                     <i class="fa-solid fa-calendar-check text-violet-400"></i>
                     <span>EVENEMENTEN &amp; LEVEN IN DE BUURT</span>
                 </div>
-
-                <div id="events-list" class="space-y-3 text-sm">
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3">
-                        <div class="font-medium">Lokerse Feestweek 2026</div>
-                        <div class="text-emerald-400 text-xs mt-0.5">31 jul – 9 aug • Lokeren centrum</div>
-                    </div>
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3">
-                        <div class="font-medium">Infomoment Crisisvrijwilligers</div>
-                        <div class="text-emerald-400 text-xs mt-0.5">Binnenkort • Lokeren</div>
-                    </div>
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3">
-                        <div class="font-medium">Cultuurseizoen Lochristi</div>
-                        <div class="text-emerald-400 text-xs mt-0.5">Zomer 2026 • Lochristi</div>
-                    </div>
-                </div>
+                <div id="events-list" class="space-y-3 text-sm"></div>
             </div>
 
-            <!-- WEER + LINKS -->
             <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-3xl p-7 dashboard-card">
                 <div class="grid md:grid-cols-3 gap-8">
                     <div>
@@ -274,9 +309,9 @@
                             <i class="fa-solid fa-cloud-sun text-amber-400"></i>
                             <span>WEER &amp; OMGEVING</span>
                         </div>
-                        <div id="weather-detail" class="text-sm space-y-1.5 text-slate-300">
-                            <!-- populated by JS -->
-                        </div>
+                        <div id="weather-detail" class="text-sm space-y-1.5 text-slate-300"></div>
+                        <div id="weather-pills" class="flex flex-wrap gap-1.5 mt-3"></div>
+                        <div class="text-[10px] text-slate-500 mt-2">Bron: Open-Meteo</div>
                     </div>
 
                     <div>
@@ -284,11 +319,9 @@
                             <i class="fa-solid fa-road text-orange-400"></i>
                             <span>VERKEER &amp; WEGENWERKEN</span>
                         </div>
-                        <div class="text-sm text-slate-300 space-y-1">
-                            <div>• Tijdelijke maatregelen Lokerse Feestweek (31 jul - 9 aug)</div>
-                            <div>• Wegenwerken Oude Veldstraat (Lochristi)</div>
-                            <div class="text-xs text-emerald-400 pt-1">Geen grote files gemeld</div>
-                        </div>
+                        <div id="traffic-list" class="text-sm text-slate-300 space-y-1.5"></div>
+                        <div id="traffic-local-note" class="text-xs text-slate-500 pt-2"></div>
+                        <div class="text-[10px] text-slate-500 pt-1">Bron: Verkeerscentrum Vlaanderen · DATEX II · CC BY</div>
                     </div>
 
                     <div>
@@ -296,25 +329,19 @@
                             <i class="fa-solid fa-link text-teal-400"></i>
                             <span>SNELLE LINKS</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
-                            <a href="https://lokeren.be/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>lokeren.be</span></a>
-                            <a href="https://laarne.be/nieuws" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>laarne.be/nieuws</span></a>
-                            <a href="https://www.lochristi.be/" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-globe w-4"></i> <span>lochristi.be</span></a>
-                            <a href="https://www.nieuwsblad.be/regio/oost-vlaanderen/waasland/lokeren" target="_blank" class="hover:text-emerald-400 flex items-center gap-x-1.5"><i class="fa-solid fa-newspaper w-4"></i> <span>Nieuwsblad Lokeren</span></a>
-                        </div>
+                        <div id="links-list" class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm"></div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- Footer -->
         <div class="mt-10 pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
             <div>
-                Lokerse Status v2.2 • Automatisch bijgewerkt • Gemaakt met liefde voor de Lokerse streek door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
+                Vlaamse Status v3.0 • Automatisch bijgewerkt • Gemaakt met liefde voor Vlaanderen, en voor de Lokerse streek, door <a href="https://github.com/ddc9000" class="hover:text-emerald-400">ddc9000</a>
             </div>
             <div class="flex items-center gap-x-4">
-                <a href="https://github.com/ddc9000/Lokerse-Status" class="hover:text-emerald-400 flex items-center gap-x-1.5">
+                <a href="https://github.com/ddc9000/Vlaamse-Status" class="hover:text-emerald-400 flex items-center gap-x-1.5">
                     <i class="fa-brands fa-github"></i> <span>GitHub</span>
                 </a>
                 <span class="text-slate-700">•</span>
@@ -324,8 +351,169 @@
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     <script>
-        let activityChart = null;
+        const LOCAL_FOCUS = ['Lokeren', 'Destelbergen', 'Laarne', 'Lochristi'];
+        const FALLBACK_REGIONS = {
+            provinces: [
+                { id: 'west-vlaanderen', name: 'West-Vlaanderen', lat: 51.05, lon: 3.05, zoom: 9 },
+                { id: 'oost-vlaanderen', name: 'Oost-Vlaanderen', lat: 51.02, lon: 3.90, zoom: 9 },
+                { id: 'antwerpen', name: 'Antwerpen', lat: 51.25, lon: 4.70, zoom: 9 },
+                { id: 'limburg', name: 'Limburg', lat: 50.95, lon: 5.45, zoom: 9 },
+                { id: 'vlaams-brabant', name: 'Vlaams-Brabant', lat: 50.88, lon: 4.55, zoom: 9 },
+                { id: 'brussel', name: 'Brussel', lat: 50.846, lon: 4.352, zoom: 12 }
+            ],
+            municipalities: [
+                { name: 'Brugge', province: 'west-vlaanderen', lat: 51.209, lon: 3.224, marker: true, local: false },
+                { name: 'Gent', province: 'oost-vlaanderen', lat: 51.054, lon: 3.722, marker: true, local: false },
+                { name: 'Lokeren', province: 'oost-vlaanderen', lat: 51.103, lon: 3.993, marker: true, local: true },
+                { name: 'Destelbergen', province: 'oost-vlaanderen', lat: 51.059, lon: 3.799, marker: true, local: true },
+                { name: 'Laarne', province: 'oost-vlaanderen', lat: 51.029, lon: 3.853, marker: true, local: true },
+                { name: 'Lochristi', province: 'oost-vlaanderen', lat: 51.096, lon: 3.833, marker: true, local: true },
+                { name: 'Antwerpen', province: 'antwerpen', lat: 51.221, lon: 4.399, marker: true, local: false },
+                { name: 'Hasselt', province: 'limburg', lat: 50.931, lon: 5.337, marker: true, local: false },
+                { name: 'Leuven', province: 'vlaams-brabant', lat: 50.879, lon: 4.701, marker: true, local: false },
+                { name: 'Brussel', province: 'brussel', lat: 50.847, lon: 4.352, marker: true, local: false }
+            ],
+            localFocus: LOCAL_FOCUS,
+            map: { south: 50.67, west: 2.54, north: 51.51, east: 5.92 }
+        };
+
+        const EVENTS = [
+            { title: 'Lokerse Feestweek 2026', when: '31 jul – 9 aug • Lokeren centrum', province: 'oost-vlaanderen', places: ['Lokeren'] },
+            { title: 'Infomoment Crisisvrijwilligers', when: 'Binnenkort • Lokeren', province: 'oost-vlaanderen', places: ['Lokeren'] },
+            { title: 'Cultuurseizoen Lochristi', when: 'Zomer 2026 • Lochristi', province: 'oost-vlaanderen', places: ['Lochristi'] },
+            { title: 'Gentse Feesten', when: 'Half juli • Gent • jaarlijks', province: 'oost-vlaanderen', places: ['Gent'] },
+            { title: 'Carnaval Aalst', when: 'Voorjaar • Aalst • jaarlijks', province: 'oost-vlaanderen', places: ['Aalst'] },
+            { title: 'Sinksenfoor', when: 'Mei / juni • Antwerpen • jaarlijks', province: 'antwerpen', places: ['Antwerpen'] },
+            { title: 'Rock Werchter', when: 'Begin juli • Werchter • jaarlijks', province: 'vlaams-brabant', places: ['Rotselaar'] },
+            { title: 'Ronde van Vlaanderen', when: 'Voorjaar • heel Vlaanderen • jaarlijks', province: 'vlaanderen', places: [] },
+            { title: 'De Warmste Week', when: 'December • VRT • heel Vlaanderen', province: 'vlaanderen', places: [] }
+        ];
+
+        const LINKS = [
+            { label: 'VRT NWS', href: 'https://www.vrt.be/vrtnws/nl/', region: 'alles', icon: 'fa-newspaper' },
+            { label: 'Verkeerscentrum', href: 'https://www.verkeerscentrum.be/', region: 'alles', icon: 'fa-road' },
+            { label: 'Nieuwsblad', href: 'https://www.nieuwsblad.be/', region: 'alles', icon: 'fa-newspaper' },
+            { label: 'HLN', href: 'https://www.hln.be/', region: 'alles', icon: 'fa-newspaper' },
+            { label: 'lokeren.be', href: 'https://lokeren.be/', region: 'lokerse-streek', icon: 'fa-globe' },
+            { label: 'laarne.be/nieuws', href: 'https://laarne.be/nieuws', region: 'lokerse-streek', icon: 'fa-globe' },
+            { label: 'lochristi.be', href: 'https://www.lochristi.be/', region: 'lokerse-streek', icon: 'fa-globe' },
+            { label: 'destelbergen.be', href: 'https://www.destelbergen.be/', region: 'lokerse-streek', icon: 'fa-globe' },
+            { label: 'Nieuwsblad Lokeren', href: 'https://www.nieuwsblad.be/regio/oost-vlaanderen/waasland/lokeren', region: 'lokerse-streek', icon: 'fa-newspaper' },
+            { label: 'KW.be', href: 'https://kw.be/', region: 'west-vlaanderen', icon: 'fa-newspaper' },
+            { label: 'Nieuwsblad W-Vl.', href: 'https://www.nieuwsblad.be/regio/west-vlaanderen/', region: 'west-vlaanderen', icon: 'fa-newspaper' },
+            { label: 'Nieuwsblad O-Vl.', href: 'https://www.nieuwsblad.be/regio/oost-vlaanderen/', region: 'oost-vlaanderen', icon: 'fa-newspaper' },
+            { label: 'GVA', href: 'https://www.gva.be/', region: 'antwerpen', icon: 'fa-newspaper' },
+            { label: 'ATV', href: 'https://www.atv.be/', region: 'antwerpen', icon: 'fa-tv' },
+            { label: 'HBVL', href: 'https://www.hbvl.be/', region: 'limburg', icon: 'fa-newspaper' },
+            { label: 'TVL', href: 'https://www.tvl.be/', region: 'limburg', icon: 'fa-tv' },
+            { label: 'ROBtv', href: 'https://www.robtv.be/', region: 'vlaams-brabant', icon: 'fa-tv' },
+            { label: 'Nieuwsblad Vl-Br.', href: 'https://www.nieuwsblad.be/regio/vlaams-brabant/', region: 'vlaams-brabant', icon: 'fa-newspaper' },
+            { label: 'BRUZZ', href: 'https://www.bruzz.be/', region: 'brussel', icon: 'fa-newspaper' },
+            { label: 'Nieuwsblad Brussel', href: 'https://www.nieuwsblad.be/regio/brussel/', region: 'brussel', icon: 'fa-newspaper' }
+        ];
+
+        const MORE_LINKS = {
+            alles: 'https://www.vrt.be/vrtnws/nl/',
+            'lokerse-streek': 'https://www.nieuwsblad.be/regio/oost-vlaanderen/waasland/lokeren',
+            'west-vlaanderen': 'https://www.nieuwsblad.be/regio/west-vlaanderen/',
+            'oost-vlaanderen': 'https://www.nieuwsblad.be/regio/oost-vlaanderen/',
+            antwerpen: 'https://www.gva.be/',
+            limburg: 'https://www.hbvl.be/',
+            'vlaams-brabant': 'https://www.nieuwsblad.be/regio/vlaams-brabant/',
+            brussel: 'https://www.bruzz.be/',
+            Lokeren: 'https://lokeren.be/nieuws',
+            Laarne: 'https://laarne.be/nieuws',
+            Lochristi: 'https://www.lochristi.be/',
+            Destelbergen: 'https://www.destelbergen.be/'
+        };
+
+        const state = {
+            news: [],
+            newsUpdated: null,
+            weather: null,
+            history: [],
+            traffic: [],
+            regions: FALLBACK_REGIONS,
+            region: 'alles',
+            city: '',
+            map: null,
+            cityLayer: null,
+            trafficLayer: null,
+            chart: null,
+            mapReady: false
+        };
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[char]));
+        }
+
+        function safeUrl(value) {
+            try {
+                const url = new URL(value, window.location.href);
+                if (url.protocol === 'http:' || url.protocol === 'https:') return url.href;
+            } catch (err) { /* ongeldige link */ }
+            return '#';
+        }
+
+        function regionName(id) {
+            if (!id || id === 'alles' || id === 'vlaanderen') return 'Vlaanderen';
+            if (id === 'lokerse-streek') return 'Lokerse streek';
+            const province = (state.regions.provinces || []).find(item => item.id === id);
+            return province ? province.name : id;
+        }
+
+        function findCity(name) {
+            return (state.regions.municipalities || []).find(place => place.name === name);
+        }
+
+        function citiesForRegion(region) {
+            const all = state.regions.municipalities || [];
+            if (region === 'lokerse-streek') return all.filter(place => place.local);
+            if (!region || region === 'alles') return all;
+            return all.filter(place => place.province === region);
+        }
+
+        function itemMatches(item) {
+            const places = item.places || [];
+            const provinces = (item.provinces && item.provinces.length) ? item.provinces : (item.province ? [item.province] : []);
+            if (state.region === 'lokerse-streek') {
+                if (!places.some(place => LOCAL_FOCUS.includes(place))) return false;
+            } else if (state.region && state.region !== 'alles') {
+                if (!provinces.includes(state.region)) return false;
+            }
+            if (state.city && !places.includes(state.city)) return false;
+            return true;
+        }
+
+        function eventMatches(item) {
+            if (state.city) return (item.places || []).includes(state.city);
+            if (state.region === 'lokerse-streek') return (item.places || []).some(place => LOCAL_FOCUS.includes(place));
+            if (!state.region || state.region === 'alles') return true;
+            return item.province === state.region || item.province === 'vlaanderen';
+        }
+
+        function activityScore(items) {
+            if (!items || !items.length) return 15;
+            const cutoff = Date.now() - 36 * 3600 * 1000;
+            const sources = new Set();
+            let recent = 0;
+            let dated = 0;
+            items.forEach(item => {
+                if (item.source) sources.add(item.source);
+                const stamp = Date.parse(item.published || '');
+                if (!Number.isNaN(stamp)) {
+                    dated += 1;
+                    if (stamp >= cutoff) recent += 1;
+                }
+            });
+            const ratio = dated === 0 ? 0.35 : recent / dated;
+            const score = Math.round(18 + ratio * 55 + Math.min(10, sources.size) * 2.5);
+            return Math.max(15, Math.min(95, score));
+        }
 
         function initializeTailwind() {
             tailwind.config = {
@@ -342,128 +530,387 @@
         function updateClock() {
             const clockEl = document.getElementById('live-clock');
             if (!clockEl) return;
-            const now = new Date();
-            clockEl.textContent = now.toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit', hour12: false });
+            clockEl.textContent = new Date().toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+
+        async function fetchJson(path) {
+            const response = await fetch(path, { cache: 'no-cache' });
+            if (!response.ok) throw new Error(path);
+            return response.json();
         }
 
         async function loadData() {
-            try {
-                const [newsRes, weatherRes, historyRes] = await Promise.all([
-                    fetch('data/news.json').then(r => r.json()),
-                    fetch('data/weather.json').then(r => r.json()),
-                    fetch('data/activity_history.json').then(r => r.json())
-                ]);
+            const jobs = await Promise.allSettled([
+                fetchJson('data/news.json'),
+                fetchJson('data/weather.json'),
+                fetchJson('data/activity_history.json'),
+                fetchJson('data/traffic.json'),
+                fetchJson('data/regions.json')
+            ]);
+            if (jobs[0].status === 'fulfilled') {
+                state.news = jobs[0].value.items || [];
+                state.newsUpdated = jobs[0].value.updated || null;
+            }
+            if (jobs[1].status === 'fulfilled') state.weather = jobs[1].value;
+            if (jobs[2].status === 'fulfilled') state.history = jobs[2].value || [];
+            if (jobs[3].status === 'fulfilled') state.traffic = (jobs[3].value && jobs[3].value.items) || [];
+            if (jobs[4].status === 'fulfilled' && jobs[4].value.provinces) state.regions = jobs[4].value;
+            readHash();
 
-                renderNews(newsRes.items || []);
-                const newsCountEl = document.getElementById('news-count');
-                if (newsCountEl) newsCountEl.textContent = newsRes.count || newsRes.items?.length || 0;
-
-                renderWeather(weatherRes);
-
-                if (historyRes && historyRes.length > 0) {
-                    const latest = historyRes[historyRes.length - 1];
-                    updateActivityIndex(latest.score, historyRes);
-                }
-
-                const updateEl = document.getElementById('last-update');
-                if (updateEl && newsRes.updated) {
-                    const d = new Date(newsRes.updated);
-                    updateEl.textContent = d.toLocaleDateString('nl-BE', {day:'numeric', month:'short'}) + ' ' + d.toLocaleTimeString('nl-BE', {hour:'2-digit', minute:'2-digit'});
-                }
-
-            } catch (e) {
-                console.error('Fout bij laden data:', e);
+            if (jobs[0].status === 'rejected' && jobs[1].status === 'rejected') {
                 showFallbackData();
             }
+            buildFilters();
+            render();
+            renderHistoryChart(state.history);
+            const updateEl = document.getElementById('last-update');
+            if (updateEl && state.newsUpdated) {
+                const d = new Date(state.newsUpdated);
+                updateEl.textContent = d.toLocaleDateString('nl-BE', { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+
+        function buildFilters() {
+            const wrap = document.getElementById('region-filters');
+            const chips = [{ id: 'alles', name: 'Alles' }, { id: 'lokerse-streek', name: 'Lokerse streek' }]
+                .concat(state.regions.provinces || []);
+            wrap.innerHTML = chips.map(chip => (
+                `<button type="button" data-region="${escapeHtml(chip.id)}" class="region-chip px-3 py-1.5 rounded-2xl border text-xs font-medium bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200">${escapeHtml(chip.name)}</button>`
+            )).join('');
+            wrap.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => setRegion(button.dataset.region));
+            });
+            fillCitySelect();
+            syncChips();
+        }
+
+        function fillCitySelect() {
+            const select = document.getElementById('city-filter');
+            const cities = citiesForRegion(state.region).slice().sort((a, b) => a.name.localeCompare(b.name, 'nl'));
+            const groups = {};
+            cities.forEach(place => {
+                const key = state.region === 'lokerse-streek' ? 'lokerse-streek' : place.province;
+                (groups[key] = groups[key] || []).push(place);
+            });
+            let html = '<option value="">Alle gemeenten</option>';
+            Object.keys(groups).forEach(key => {
+                html += `<optgroup label="${escapeHtml(regionName(key))}">`;
+                groups[key].forEach(place => {
+                    html += `<option value="${escapeHtml(place.name)}">${escapeHtml(place.name)}</option>`;
+                });
+                html += '</optgroup>';
+            });
+            select.innerHTML = html;
+            select.value = state.city || '';
+        }
+
+        function syncChips() {
+            document.querySelectorAll('.region-chip').forEach(button => {
+                button.classList.toggle('active', button.dataset.region === state.region);
+            });
+            const select = document.getElementById('city-filter');
+            if (select && select.value !== (state.city || '')) {
+                const exists = Array.from(select.options).some(option => option.value === state.city);
+                select.value = exists ? state.city : '';
+                if (!exists) state.city = '';
+            }
+        }
+
+        function setRegion(id) {
+            state.region = id;
+            if (id === 'alles') {
+                state.city = '';
+            } else if (state.city && !citiesForRegion(id).some(item => item.name === state.city)) {
+                state.city = '';
+            }
+            fillCitySelect();
+            syncChips();
+            writeHash();
+            render();
+        }
+
+        function setCity(name) {
+            state.city = name || '';
+            if (state.city) {
+                const place = findCity(state.city);
+                if (place && state.region === 'alles') state.region = place.province;
+                if (place && state.region === 'lokerse-streek' && !place.local) state.region = place.province;
+            }
+            fillCitySelect();
+            syncChips();
+            writeHash();
+            render();
+        }
+
+        function readHash() {
+            const raw = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+            if (!raw) return;
+            const slash = raw.indexOf('/');
+            const region = slash === -1 ? raw : raw.slice(0, slash);
+            const city = slash === -1 ? '' : raw.slice(slash + 1);
+            const known = new Set(['alles', 'lokerse-streek', ...(state.regions.provinces || []).map(item => item.id)]);
+            if (known.has(region)) state.region = region;
+            if (city && findCity(city)) state.city = city;
+        }
+
+        function writeHash() {
+            let next = '';
+            if (state.region && state.region !== 'alles') next = state.region;
+            if (state.city) next = `${next || 'alles'}/${state.city}`;
+            const hash = next ? `#${encodeURIComponent(next).replace(/%2F/g, '/')}` : '';
+            if (location.hash !== hash) {
+                history.replaceState(null, '', hash || location.pathname + location.search);
+            }
+        }
+
+        function render() {
+            const visible = state.news.filter(itemMatches);
+            renderHeadline();
+            renderNews(visible);
+            renderWeather();
+            renderTraffic();
+            renderEvents();
+            renderLinks();
+            renderTicker(visible);
+            updateActivityIndex(activityScore(visible), visible.length);
+            const countEl = document.getElementById('news-count');
+            const noteEl = document.getElementById('news-count-note');
+            if (countEl) countEl.textContent = String(visible.length);
+            if (noteEl) noteEl.textContent = state.city || state.region !== 'alles' ? 'in deze selectie' : 'laatste update';
+            renderMap(true);
+        }
+
+        function renderHeadline() {
+            const title = document.getElementById('region-title');
+            const badge = document.getElementById('region-badge');
+            const subtitle = document.getElementById('region-subtitle');
+            const kicker = document.getElementById('activity-kicker');
+            const heading = document.getElementById('news-heading');
+            let name = 'Vlaanderen';
+            let badgeText = 'VIJF PROVINCIES';
+            let placeLine = 'in Vlaanderen';
+            if (state.city) {
+                const place = findCity(state.city);
+                name = state.city;
+                badgeText = regionName(place && place.province).toUpperCase();
+                placeLine = `in ${state.city}`;
+            } else if (state.region === 'lokerse-streek') {
+                name = 'Lokerse streek';
+                badgeText = 'OOST-VLAANDEREN';
+                placeLine = 'in de Lokerse streek';
+            } else if (state.region && state.region !== 'alles') {
+                name = regionName(state.region);
+                badgeText = state.region === 'brussel' ? 'HOOFDSTEDELIJK' : 'VLAANDEREN';
+                placeLine = `in ${name}`;
+            }
+            if (title) title.textContent = name;
+            if (badge) badge.textContent = badgeText;
+            if (kicker) kicker.textContent = `Hoe rustig is het vandaag ${placeLine}?`;
+            if (heading) heading.textContent = state.region === 'alles' && !state.city ? 'LAATSTE NIEUWS UIT VLAANDEREN' : `LAATSTE NIEUWS • ${name.toUpperCase()}`;
+            if (subtitle) {
+                subtitle.textContent = state.region === 'lokerse-streek' || LOCAL_FOCUS.includes(state.city)
+                    ? 'Real-time overzicht • Met liefde voor de mensen, paarden, tuinen en poelen van de Lokerse streek'
+                    : 'Real-time overzicht voor heel Vlaanderen • Met liefde voor de mensen, paarden, tuinen en poelen — de Lokerse streek blijft één klik verwijderd';
+            }
+            const more = document.getElementById('news-more');
+            if (more) more.href = MORE_LINKS[state.city] || MORE_LINKS[state.region] || MORE_LINKS.alles;
         }
 
         function renderNews(items) {
             const container = document.getElementById('news-list');
             if (!container) return;
-            container.innerHTML = '';
-
             if (!items || items.length === 0) {
-                container.innerHTML = `<div class="px-4 py-6 text-center text-slate-400 text-sm">Momenteel geen nieuwe berichten.</div>`;
+                container.innerHTML = '<div class="px-4 py-6 text-center text-slate-400 text-sm">Geen berichten voor deze selectie. Kies een andere provincie of gemeente.</div>';
                 return;
             }
-
-            items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = `px-4 py-3.5 border-b border-slate-800 last:border-b-0 flex gap-x-4 cursor-pointer hover:bg-slate-950`;
-                div.innerHTML = `
-                    <div class="flex-1 min-w-0">
-                        <div class="font-medium text-slate-100 leading-tight">${item.title}</div>
-                        <div class="text-xs text-slate-400 mt-1 flex items-center gap-x-2">
-                            <span class="font-mono">${item.source}</span> 
-                            <span class="text-slate-600">•</span> 
-                            <span>${item.pubDate || ''}</span>
+            container.innerHTML = items.map(item => {
+                const where = (item.places && item.places.length) ? item.places.slice(0, 2).join(', ') : regionName(item.province);
+                return `
+                    <div class="px-4 py-3.5 border-b border-slate-800 last:border-b-0 flex gap-x-4 hover:bg-slate-950">
+                        <div class="flex-1 min-w-0">
+                            <div class="font-medium text-slate-100 leading-tight">${escapeHtml(item.title)}</div>
+                            <div class="text-xs text-slate-400 mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                                <span class="font-mono">${escapeHtml(item.source || '')}</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-emerald-400/90">${escapeHtml(where)}</span>
+                                <span class="text-slate-600">•</span>
+                                <span>${escapeHtml(item.pubDate || '')}</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1 line-clamp-2">${escapeHtml(item.description || '')}</div>
                         </div>
-                        <div class="text-xs text-slate-400 mt-1 line-clamp-2">${item.description || ''}</div>
-                    </div>
-                    <div class="flex-shrink-0 pt-1">
-                        <a href="${item.link}" target="_blank" class="text-emerald-400 hover:text-emerald-300">
-                            <i class="fa-solid fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
+                        <div class="flex-shrink-0 pt-1">
+                            <a href="${safeUrl(item.link)}" target="_blank" rel="noopener" class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fa-solid fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>`;
+            }).join('');
         }
 
-        function renderWeather(weather) {
-            if (!weather) return;
+        function weatherForSelection() {
+            const locations = (state.weather && state.weather.locations) || null;
+            if (!locations) {
+                if (state.weather && typeof state.weather.temp !== 'undefined') return state.weather;
+                return null;
+            }
+            let key = 'vlaanderen';
+            if (state.region === 'lokerse-streek' || LOCAL_FOCUS.includes(state.city)) key = 'lokerse-streek';
+            else if (state.region && locations[state.region]) key = state.region;
+            else if (state.city) {
+                const place = findCity(state.city);
+                if (place && locations[place.province]) key = place.province;
+            }
+            return locations[key] || locations.vlaanderen || null;
+        }
+
+        function renderWeather() {
+            const weather = weatherForSelection();
             const tempEl = document.getElementById('weather-temp');
             const minEl = document.getElementById('weather-min');
             const descEl = document.getElementById('weather-desc');
             const windEl = document.getElementById('weather-wind');
             const detail = document.getElementById('weather-detail');
-
+            const pills = document.getElementById('weather-pills');
+            if (!weather) return;
             if (tempEl) tempEl.textContent = weather.temp;
             if (minEl) minEl.textContent = weather.min;
-            if (descEl) descEl.textContent = weather.description;
-            if (windEl) windEl.textContent = weather.windspeed || '--';
-
+            if (descEl) descEl.textContent = weather.description || '';
+            if (windEl) windEl.textContent = weather.windspeed ?? '--';
+            const label = weather.name || 'Vlaanderen';
             if (detail) {
                 detail.innerHTML = `
-                    <div class="flex justify-between"><span>Vandaag</span> <span class="font-medium">${weather.temp}° / ${weather.min}° • ${weather.description}</span></div>
-                    <div class="flex justify-between text-xs text-slate-400"><span>Wind</span> <span>${weather.windspeed || 8} km/u</span></div>
-                `;
+                    <div class="flex justify-between gap-3"><span>${escapeHtml(label)}</span> <span class="font-medium text-right">${escapeHtml(weather.temp)}° / ${escapeHtml(weather.min)}° • ${escapeHtml(weather.description || '')}</span></div>
+                    <div class="flex justify-between text-xs text-slate-400"><span>Wind</span> <span>${escapeHtml(weather.windspeed ?? '—')} km/u</span></div>
+                    <div class="flex justify-between text-xs text-slate-400"><span>Maximum</span> <span>${escapeHtml(weather.max ?? '—')}°</span></div>`;
+            }
+            const locations = (state.weather && state.weather.locations) || {};
+            const order = ['lokerse-streek', 'west-vlaanderen', 'oost-vlaanderen', 'antwerpen', 'limburg', 'vlaams-brabant', 'brussel'];
+            if (pills) {
+                pills.innerHTML = order.filter(key => locations[key]).map(key => {
+                    const entry = locations[key];
+                    const active = weather && weather.id === key;
+                    return `<button type="button" data-weather="${escapeHtml(key)}" class="px-2 py-1 rounded-xl border text-[11px] ${active ? 'bg-emerald-950 text-emerald-300 border-emerald-800' : 'bg-slate-950 text-slate-400 border-slate-800'}">${escapeHtml(entry.name)} ${escapeHtml(entry.temp)}°</button>`;
+                }).join('');
+                pills.querySelectorAll('button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const key = button.dataset.weather;
+                        if (key === 'lokerse-streek') setRegion('lokerse-streek');
+                        else setRegion(key);
+                    });
+                });
             }
         }
 
-        function updateActivityIndex(score, historyData) {
+        function filteredTraffic() {
+            return state.traffic.filter(item => {
+                if (state.city) return item.place === state.city;
+                if (state.region === 'lokerse-streek') return LOCAL_FOCUS.includes(item.place);
+                if (state.region && state.region !== 'alles') return item.province === state.region;
+                return true;
+            });
+        }
+
+        function renderTraffic() {
+            const list = document.getElementById('traffic-list');
+            const note = document.getElementById('traffic-local-note');
+            const badge = document.getElementById('alert-badge');
+            const alertNote = document.getElementById('alert-note');
+            const items = filteredTraffic();
+            const warnings = items.filter(item => item.severity === 'warning');
+            if (badge && alertNote) {
+                if (warnings.length) {
+                    badge.textContent = 'VERHOOGD';
+                    badge.className = 'px-3.5 py-1 text-xs font-medium bg-amber-900 text-amber-200 rounded-2xl';
+                    alertNote.textContent = `${warnings.length} melding${warnings.length === 1 ? '' : 'en'} met hinder`;
+                    alertNote.className = 'text-xs text-amber-300 mt-1.5';
+                } else {
+                    badge.textContent = 'LAAG';
+                    badge.className = 'px-3.5 py-1 text-xs font-medium bg-emerald-900 text-emerald-300 rounded-2xl';
+                    alertNote.textContent = items.length ? `${items.length} meldingen, geen zware hinder` : 'Geen bijzondere meldingen';
+                    alertNote.className = 'text-xs text-emerald-400 mt-1.5';
+                }
+            }
+            if (list) {
+                if (!items.length) {
+                    list.innerHTML = '<div class="text-slate-400">Geen live meldingen voor deze selectie.</div>';
+                } else {
+                    list.innerHTML = items.slice(0, 6).map(item => {
+                        const where = item.place ? `${item.place}` : regionName(item.province);
+                        const until = item.until ? ` • tot ${item.until}` : '';
+                        const color = item.severity === 'warning' ? 'text-amber-300' : 'text-slate-300';
+                        return `<div class="${color}">• ${escapeHtml(item.label)} <span class="text-slate-500">(${escapeHtml(where)}${escapeHtml(until)})</span></div>`;
+                    }).join('') + (items.length > 6 ? `<div class="text-xs text-slate-500 pt-1">${items.length - 6} extra op de kaart</div>` : '');
+                }
+            }
+            if (note) {
+                const local = state.region === 'lokerse-streek' || LOCAL_FOCUS.includes(state.city);
+                note.textContent = local
+                    ? 'Gemeentewegen zoals de Oude Veldstraat staan niet altijd op de snelwegenfeed. Kijk ook bij de gemeente zelf.'
+                    : '';
+            }
+        }
+
+        function renderEvents() {
+            const container = document.getElementById('events-list');
+            if (!container) return;
+            const items = EVENTS.filter(eventMatches);
+            if (!items.length) {
+                container.innerHTML = '<div class="text-sm text-slate-400">Geen evenementen voor deze selectie.</div>';
+                return;
+            }
+            container.innerHTML = items.map(item => `
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3">
+                    <div class="font-medium">${escapeHtml(item.title)}</div>
+                    <div class="text-emerald-400 text-xs mt-0.5">${escapeHtml(item.when)}</div>
+                </div>`).join('');
+        }
+
+        function renderLinks() {
+            const container = document.getElementById('links-list');
+            if (!container) return;
+            const region = state.region;
+            const items = LINKS.filter(link => {
+                if (region === 'alles' && !state.city) return link.region === 'alles' || link.region === 'lokerse-streek';
+                if (region === 'lokerse-streek' || LOCAL_FOCUS.includes(state.city)) return link.region === 'lokerse-streek' || link.region === 'oost-vlaanderen';
+                return link.region === region || link.region === 'alles';
+            }).slice(0, 8);
+            container.innerHTML = items.map(link => `
+                <a href="${safeUrl(link.href)}" target="_blank" rel="noopener" class="hover:text-emerald-400 flex items-center gap-x-1.5">
+                    <i class="fa-solid ${escapeHtml(link.icon)} w-4"></i> <span>${escapeHtml(link.label)}</span>
+                </a>`).join('');
+        }
+
+        function renderTicker(items) {
+            const el = document.getElementById('ticker-content');
+            if (!el) return;
+            const headlines = (items || []).slice(0, 8).map(item => item.title).filter(Boolean);
+            const bits = ['Vlaamse Status — met liefde voor de mensen, paarden, tuinen en poelen, van de Lokerse streek tot de kust en de Kempen', ...headlines];
+            el.textContent = bits.map(bit => `• ${bit} `).join('');
+        }
+
+        function updateActivityIndex(score) {
             const valueEl = document.getElementById('activity-value');
             const barEl = document.getElementById('activity-bar');
             const descEl = document.getElementById('activity-desc');
-
             if (valueEl) valueEl.textContent = score;
             if (barEl) barEl.style.width = score + '%';
-
-            let desc = "Rustig in de streek. ";
-            if (score > 65) desc = "Drukke dag! Veel nieuws en leven in de buurt. ";
-            else if (score > 45) desc = "Normale activiteit. Goede balans. ";
-            
-            if (descEl) descEl.innerHTML = desc + "Voor de paardenweides, de tuinen en de poelen van onze streek.";
-
-            renderHistoryChart(historyData);
+            let desc = 'Rustig. Weinig nieuwe berichten in deze selectie. ';
+            if (score > 70) desc = 'Drukke dag. Veel nieuws en beweging in deze selectie. ';
+            else if (score > 45) desc = 'Normale activiteit. Een goede balans. ';
+            if (descEl) descEl.textContent = desc + 'Voor de mensen, paarden, tuinen en poelen — van de Lokerse streek tot de rest van Vlaanderen.';
         }
 
         function renderHistoryChart(historyData) {
             const ctx = document.getElementById('history-chart');
             if (!ctx || !historyData || historyData.length === 0) return;
-
-            if (activityChart) activityChart.destroy();
-
-            const labels = historyData.map(d => d.label);
-            const scores = historyData.map(d => d.score);
-
-            activityChart = new Chart(ctx, {
+            if (state.chart) state.chart.destroy();
+            state.chart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: historyData.map(d => d.label),
                     datasets: [{
                         label: 'Rust Index',
-                        data: scores,
+                        data: historyData.map(d => d.score),
                         borderColor: '#34d399',
                         backgroundColor: 'rgba(52, 211, 153, 0.12)',
                         borderWidth: 2.5,
@@ -484,26 +931,99 @@
             });
         }
 
+        function initMap() {
+            if (state.map || typeof L === 'undefined') return;
+            const map = L.map('map', { scrollWheelZoom: false, zoomControl: true });
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                maxZoom: 19
+            }).addTo(map);
+            state.map = map;
+            state.cityLayer = L.layerGroup().addTo(map);
+            state.trafficLayer = L.layerGroup().addTo(map);
+            state.mapReady = true;
+            const bounds = state.regions.map || FALLBACK_REGIONS.map;
+            map.fitBounds([[bounds.south, bounds.west], [bounds.north, bounds.east]], { padding: [16, 16] });
+            setTimeout(() => map.invalidateSize(), 150);
+        }
+
+        function dotIcon(color, radius) {
+            const size = radius * 2;
+            return L.divIcon({
+                className: '',
+                html: `<div style="width:${size}px;height:${size}px;border-radius:9999px;background:${color};box-shadow:0 0 0 3px rgba(15,23,42,.55)"></div>`,
+                iconSize: [size, size],
+                iconAnchor: [radius, radius]
+            });
+        }
+
+        function renderMap(refit) {
+            initMap();
+            if (!state.mapReady) return;
+            state.cityLayer.clearLayers();
+            state.trafficLayer.clearLayers();
+            (state.regions.municipalities || []).filter(place => place.marker).forEach(place => {
+                const selected = state.city === place.name;
+                const color = place.local ? '#34d399' : '#38bdf8';
+                const marker = L.marker([place.lat, place.lon], { icon: dotIcon(selected ? '#f8fafc' : color, selected ? 8 : 6) });
+                marker.bindPopup(`<strong>${escapeHtml(place.name)}</strong><br><span style="color:#94a3b8">${escapeHtml(regionName(place.province))}</span>`);
+                marker.on('click', () => {
+                    state.city = place.name;
+                    state.region = place.local ? 'lokerse-streek' : place.province;
+                    fillCitySelect();
+                    syncChips();
+                    writeHash();
+                    render();
+                });
+                marker.addTo(state.cityLayer);
+            });
+            filteredTraffic().forEach(item => {
+                if (typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+                const marker = L.circleMarker([item.lat, item.lon], {
+                    radius: item.severity === 'warning' ? 7 : 4,
+                    color: item.severity === 'warning' ? '#fb923c' : '#94a3b8',
+                    weight: 1,
+                    fillColor: item.severity === 'warning' ? '#fb923c' : '#64748b',
+                    fillOpacity: 0.85
+                });
+                const where = item.place ? `${item.place} · ` : '';
+                marker.bindPopup(`<strong>${escapeHtml(item.label)}</strong><br><span style="color:#94a3b8">${escapeHtml(where + regionName(item.province))}</span>`);
+                marker.addTo(state.trafficLayer);
+            });
+            if (!refit) return;
+            const bounds = state.regions.map || FALLBACK_REGIONS.map;
+            if (state.city) {
+                const place = findCity(state.city);
+                if (place) state.map.setView([place.lat, place.lon], 12);
+            } else if (state.region === 'lokerse-streek') {
+                state.map.setView([51.07, 3.90], 11);
+            } else if (state.region && state.region !== 'alles') {
+                const province = (state.regions.provinces || []).find(item => item.id === state.region);
+                if (province) state.map.setView([province.lat, province.lon], province.zoom || 9);
+            } else {
+                state.map.fitBounds([[bounds.south, bounds.west], [bounds.north, bounds.east]], { padding: [16, 16] });
+            }
+        }
+
         function showFallbackData() {
             const container = document.getElementById('news-list');
-            if (container) container.innerHTML = `<div class="px-4 py-6 text-center text-slate-400 text-sm">Kon data niet laden. Probeer later opnieuw.</div>`;
+            if (container) container.innerHTML = '<div class="px-4 py-6 text-center text-slate-400 text-sm">Kon data niet laden. Probeer later opnieuw.</div>';
         }
 
         async function refreshAllData() {
-            const btns = document.querySelectorAll('button');
-            btns.forEach(b => b.disabled = true);
-
+            const button = document.getElementById('refresh-btn');
+            if (button) button.disabled = true;
             try {
                 await loadData();
                 const toast = document.createElement('div');
-                toast.className = `fixed bottom-6 right-6 bg-emerald-900 border border-emerald-700 text-emerald-200 px-5 py-3 rounded-2xl text-sm flex items-center gap-x-3`;
-                toast.innerHTML = `<i class="fa-solid fa-check-circle"></i><span>Data vernieuwd</span>`;
+                toast.className = 'fixed bottom-6 right-6 bg-emerald-900 border border-emerald-700 text-emerald-200 px-5 py-3 rounded-2xl text-sm flex items-center gap-x-3 z-50';
+                toast.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Data vernieuwd</span>';
                 document.body.appendChild(toast);
                 setTimeout(() => { toast.style.transition = 'all .3s'; toast.style.opacity = '0'; setTimeout(() => toast.remove(), 200); }, 1600);
-            } catch(e) {
-                console.error(e);
+            } catch (err) {
+                console.error(err);
             } finally {
-                btns.forEach(b => b.disabled = false);
+                if (button) button.disabled = false;
             }
         }
 
@@ -514,9 +1034,9 @@
         }
 
         function setupKeyboard() {
-            document.addEventListener('keydown', function(e) {
-                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'r') {
-                    e.preventDefault();
+            document.addEventListener('keydown', function (event) {
+                if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'r') {
+                    event.preventDefault();
                     refreshAllData();
                 }
             });
@@ -526,13 +1046,12 @@
             initializeTailwind();
             updateClock();
             setInterval(updateClock, 30000);
-            
+            document.getElementById('city-filter').addEventListener('change', event => setCity(event.target.value));
+            initMap();
             await loadData();
-            
             registerServiceWorker();
             setupKeyboard();
-
-            console.log('%c[Lokerse Status v2.2] Typography aligned with pizzint.watch style.', 'color:#64748b');
+            console.log('%c[Vlaamse Status v3.0] Dashboard voor heel Vlaanderen, met de Lokerse streek in de kijker.', 'color:#64748b');
         }
 
         window.onload = initializeDashboard;

@@ -1,0 +1,668 @@
+{
+  "provinces": [
+    {
+      "id": "west-vlaanderen",
+      "name": "West-Vlaanderen",
+      "lat": 51.05,
+      "lon": 3.05,
+      "zoom": 9
+    },
+    {
+      "id": "oost-vlaanderen",
+      "name": "Oost-Vlaanderen",
+      "lat": 51.02,
+      "lon": 3.9,
+      "zoom": 9
+    },
+    {
+      "id": "antwerpen",
+      "name": "Antwerpen",
+      "lat": 51.25,
+      "lon": 4.7,
+      "zoom": 9
+    },
+    {
+      "id": "limburg",
+      "name": "Limburg",
+      "lat": 50.95,
+      "lon": 5.45,
+      "zoom": 9
+    },
+    {
+      "id": "vlaams-brabant",
+      "name": "Vlaams-Brabant",
+      "lat": 50.88,
+      "lon": 4.55,
+      "zoom": 9
+    },
+    {
+      "id": "brussel",
+      "name": "Brussel",
+      "lat": 50.846,
+      "lon": 4.352,
+      "zoom": 12
+    }
+  ],
+  "municipalities": [
+    {
+      "name": "Brugge",
+      "province": "west-vlaanderen",
+      "lat": 51.209,
+      "lon": 3.224,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Oostende",
+      "province": "west-vlaanderen",
+      "lat": 51.216,
+      "lon": 2.928,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Kortrijk",
+      "province": "west-vlaanderen",
+      "lat": 50.828,
+      "lon": 3.265,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Roeselare",
+      "province": "west-vlaanderen",
+      "lat": 50.945,
+      "lon": 3.123,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Ieper",
+      "province": "west-vlaanderen",
+      "lat": 50.851,
+      "lon": 2.885,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Knokke-Heist",
+      "province": "west-vlaanderen",
+      "lat": 51.349,
+      "lon": 3.287,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Veurne",
+      "province": "west-vlaanderen",
+      "lat": 51.072,
+      "lon": 2.662,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Diksmuide",
+      "province": "west-vlaanderen",
+      "lat": 51.033,
+      "lon": 2.864,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Tielt",
+      "province": "west-vlaanderen",
+      "lat": 50.999,
+      "lon": 3.327,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Waregem",
+      "province": "west-vlaanderen",
+      "lat": 50.887,
+      "lon": 3.428,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Torhout",
+      "province": "west-vlaanderen",
+      "lat": 51.066,
+      "lon": 3.1,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Izegem",
+      "province": "west-vlaanderen",
+      "lat": 50.92,
+      "lon": 3.213,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Blankenberge",
+      "province": "west-vlaanderen",
+      "lat": 51.313,
+      "lon": 3.132,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Gent",
+      "province": "oost-vlaanderen",
+      "lat": 51.054,
+      "lon": 3.722,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Aalst",
+      "province": "oost-vlaanderen",
+      "lat": 50.937,
+      "lon": 4.04,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Sint-Niklaas",
+      "province": "oost-vlaanderen",
+      "lat": 51.164,
+      "lon": 4.139,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Lokeren",
+      "province": "oost-vlaanderen",
+      "lat": 51.103,
+      "lon": 3.993,
+      "marker": true,
+      "local": true
+    },
+    {
+      "name": "Destelbergen",
+      "province": "oost-vlaanderen",
+      "lat": 51.059,
+      "lon": 3.799,
+      "marker": true,
+      "local": true
+    },
+    {
+      "name": "Laarne",
+      "province": "oost-vlaanderen",
+      "lat": 51.029,
+      "lon": 3.853,
+      "marker": true,
+      "local": true
+    },
+    {
+      "name": "Lochristi",
+      "province": "oost-vlaanderen",
+      "lat": 51.096,
+      "lon": 3.833,
+      "marker": true,
+      "local": true
+    },
+    {
+      "name": "Dendermonde",
+      "province": "oost-vlaanderen",
+      "lat": 51.028,
+      "lon": 4.101,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Oudenaarde",
+      "province": "oost-vlaanderen",
+      "lat": 50.845,
+      "lon": 3.608,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Eeklo",
+      "province": "oost-vlaanderen",
+      "lat": 51.187,
+      "lon": 3.566,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Deinze",
+      "province": "oost-vlaanderen",
+      "lat": 50.983,
+      "lon": 3.53,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Ninove",
+      "province": "oost-vlaanderen",
+      "lat": 50.835,
+      "lon": 4.025,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Geraardsbergen",
+      "province": "oost-vlaanderen",
+      "lat": 50.772,
+      "lon": 3.882,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Wetteren",
+      "province": "oost-vlaanderen",
+      "lat": 51.006,
+      "lon": 3.883,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Zele",
+      "province": "oost-vlaanderen",
+      "lat": 51.066,
+      "lon": 4.041,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Hamme",
+      "province": "oost-vlaanderen",
+      "lat": 51.098,
+      "lon": 4.137,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Temse",
+      "province": "oost-vlaanderen",
+      "lat": 51.127,
+      "lon": 4.213,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Beveren",
+      "province": "oost-vlaanderen",
+      "lat": 51.213,
+      "lon": 4.257,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Zelzate",
+      "province": "oost-vlaanderen",
+      "lat": 51.2,
+      "lon": 3.807,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Antwerpen",
+      "province": "antwerpen",
+      "lat": 51.221,
+      "lon": 4.399,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Mechelen",
+      "province": "antwerpen",
+      "lat": 51.025,
+      "lon": 4.477,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Turnhout",
+      "province": "antwerpen",
+      "lat": 51.323,
+      "lon": 4.949,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Geel",
+      "province": "antwerpen",
+      "lat": 51.161,
+      "lon": 4.99,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Lier",
+      "province": "antwerpen",
+      "lat": 51.131,
+      "lon": 4.57,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Herentals",
+      "province": "antwerpen",
+      "lat": 51.177,
+      "lon": 4.836,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Mol",
+      "province": "antwerpen",
+      "lat": 51.184,
+      "lon": 5.116,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Hoogstraten",
+      "province": "antwerpen",
+      "lat": 51.4,
+      "lon": 4.761,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Heist-op-den-Berg",
+      "province": "antwerpen",
+      "lat": 51.075,
+      "lon": 4.728,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Brasschaat",
+      "province": "antwerpen",
+      "lat": 51.291,
+      "lon": 4.494,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Mortsel",
+      "province": "antwerpen",
+      "lat": 51.17,
+      "lon": 4.451,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Boom",
+      "province": "antwerpen",
+      "lat": 51.087,
+      "lon": 4.366,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Willebroek",
+      "province": "antwerpen",
+      "lat": 51.06,
+      "lon": 4.361,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Hasselt",
+      "province": "limburg",
+      "lat": 50.931,
+      "lon": 5.337,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Genk",
+      "province": "limburg",
+      "lat": 50.965,
+      "lon": 5.5,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Sint-Truiden",
+      "province": "limburg",
+      "lat": 50.816,
+      "lon": 5.186,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Tongeren",
+      "province": "limburg",
+      "lat": 50.781,
+      "lon": 5.464,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Beringen",
+      "province": "limburg",
+      "lat": 51.049,
+      "lon": 5.226,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Lommel",
+      "province": "limburg",
+      "lat": 51.23,
+      "lon": 5.313,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Maaseik",
+      "province": "limburg",
+      "lat": 51.095,
+      "lon": 5.783,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Maasmechelen",
+      "province": "limburg",
+      "lat": 50.965,
+      "lon": 5.694,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Leopoldsburg",
+      "province": "limburg",
+      "lat": 51.117,
+      "lon": 5.258,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Heusden-Zolder",
+      "province": "limburg",
+      "lat": 51.033,
+      "lon": 5.278,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Bilzen",
+      "province": "limburg",
+      "lat": 50.873,
+      "lon": 5.518,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Peer",
+      "province": "limburg",
+      "lat": 51.13,
+      "lon": 5.458,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Bree",
+      "province": "limburg",
+      "lat": 51.141,
+      "lon": 5.597,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Leuven",
+      "province": "vlaams-brabant",
+      "lat": 50.879,
+      "lon": 4.701,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Vilvoorde",
+      "province": "vlaams-brabant",
+      "lat": 50.928,
+      "lon": 4.425,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Halle",
+      "province": "vlaams-brabant",
+      "lat": 50.734,
+      "lon": 4.234,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Tienen",
+      "province": "vlaams-brabant",
+      "lat": 50.807,
+      "lon": 4.938,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Diest",
+      "province": "vlaams-brabant",
+      "lat": 50.985,
+      "lon": 5.05,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Aarschot",
+      "province": "vlaams-brabant",
+      "lat": 50.984,
+      "lon": 4.837,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Zaventem",
+      "province": "vlaams-brabant",
+      "lat": 50.885,
+      "lon": 4.473,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Asse",
+      "province": "vlaams-brabant",
+      "lat": 50.909,
+      "lon": 4.199,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Dilbeek",
+      "province": "vlaams-brabant",
+      "lat": 50.848,
+      "lon": 4.263,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Overijse",
+      "province": "vlaams-brabant",
+      "lat": 50.774,
+      "lon": 4.537,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Tervuren",
+      "province": "vlaams-brabant",
+      "lat": 50.824,
+      "lon": 4.514,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Rotselaar",
+      "province": "vlaams-brabant",
+      "lat": 50.953,
+      "lon": 4.717,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Brussel",
+      "province": "brussel",
+      "lat": 50.847,
+      "lon": 4.352,
+      "marker": true,
+      "local": false
+    },
+    {
+      "name": "Elsene",
+      "province": "brussel",
+      "lat": 50.827,
+      "lon": 4.372,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Schaarbeek",
+      "province": "brussel",
+      "lat": 50.868,
+      "lon": 4.373,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Anderlecht",
+      "province": "brussel",
+      "lat": 50.836,
+      "lon": 4.308,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Ukkel",
+      "province": "brussel",
+      "lat": 50.803,
+      "lon": 4.337,
+      "marker": false,
+      "local": false
+    },
+    {
+      "name": "Sint-Jans-Molenbeek",
+      "province": "brussel",
+      "lat": 50.855,
+      "lon": 4.338,
+      "marker": false,
+      "local": false
+    }
+  ],
+  "localFocus": [
+    "Lokeren",
+    "Destelbergen",
+    "Laarne",
+    "Lochristi"
+  ],
+  "map": {
+    "south": 50.67,
+    "west": 2.54,
+    "north": 51.51,
+    "east": 5.92
+  }
+}
