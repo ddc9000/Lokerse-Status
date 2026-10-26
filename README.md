@@ -6,9 +6,9 @@ De Lokerse streek (Lokeren, Destelbergen, Laarne, Lochristi) blijft één klik v
 
 ## Live
 
-https://ddc9000.github.io/Lokerse-Status/
+https://ddc9000.github.io/Vlaamse-Status/
 
-De site gebruikt relatieve paden (`./`, `data/…`, `manifest.json`). Ze werkt daardoor op GitHub Pages los van de reponaam. Na een hernoeming van de repository wijzigt enkel de URL hierboven.
+De site gebruikt relatieve paden (`./`, `data/…`, `manifest.json`). Ze werkt daardoor op GitHub Pages los van de reponaam. De repository heet `ddc9000/Vlaamse-Status`; GitHub leidt de oude URL `ddc9000/Lokerse-Status` om.
 
 ## Wat je ziet
 
@@ -79,14 +79,9 @@ Zet een extra object in `RSS_SOURCES` in `scripts/update_news.py`:
 
 Gemeenten en aliassen (deelgemeenten zoals Kalken en Beervelde) staan in `scripts/regions.py`.
 
-## Als de repository hernoemd wordt naar Vlaamse-Status
+## Repository
 
-De code hoeft daarvoor niet aangepast te worden.
-
-- GitHub Pages verhuist van `https://ddc9000.github.io/Lokerse-Status/` naar `https://ddc9000.github.io/Vlaamse-Status/`. Pas de live-link in deze README aan.
-- De link naar de repository in de footer (`https://github.com/ddc9000/Lokerse-Status`) mag mee wijzigen. GitHub leidt de oude repo-URL doorgaans om.
-- Manifest, service worker en datafetches zijn relatief (`./`, `data/news.json`) en bevatten de reponaam niet.
-- Wie de PWA al geïnstalleerd had, installeert best opnieuw. De cache heet nu `vlaamse-status-v3`.
+De repository is hernoemd naar [ddc9000/Vlaamse-Status](https://github.com/ddc9000/Vlaamse-Status). Manifest, service worker en datafetches zijn relatief (`./`, `data/news.json`) en bevatten de reponaam niet. Wie de PWA al geïnstalleerd had onder de oude naam, installeert best opnieuw. De cache heet `vlaamse-status-v3`.
 
 ## Met dank
 

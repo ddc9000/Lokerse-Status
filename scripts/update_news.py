@@ -41,7 +41,7 @@ HISTORY_FILE = os.path.join(DATA_DIR, "activity_history.json")
 TRAFFIC_FILE = os.path.join(DATA_DIR, "traffic.json")
 REGIONS_FILE = os.path.join(DATA_DIR, "regions.json")
 
-USER_AGENT = "VlaamseStatus/3.0 (+https://github.com/ddc9000/Lokerse-Status)"
+USER_AGENT = "VlaamseStatus/3.0 (+https://github.com/ddc9000/Vlaamse-Status)"
 HEADERS = {"User-Agent": USER_AGENT}
 DATEX_URL = "https://www.verkeerscentrum.be/uitwisseling/datex2v3full"
 MAX_TOTAL = 64

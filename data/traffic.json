@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-26T00:58:33.976779",
+  "updated": "2026-10-26T01:46:08.932167",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
-  "warnings": 4,
+  "warnings": 2,
   "items": [
     {
       "id": "EVT22526864",
@@ -16,16 +16,6 @@
       "place": "Oostende"
     },
     {
-      "id": "EVT22527308",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 51.0674,
-      "lon": 4.34325,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Willebroek"
-    },
-    {
       "id": "EVT22527309",
       "label": "Verstoord verkeer",
       "severity": "warning",
@@ -34,16 +24,6 @@
       "until": "",
       "province": "antwerpen",
       "place": "Boom"
-    },
-    {
-      "id": "EVT22527310",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 51.00119,
-      "lon": 5.24106,
-      "until": "",
-      "province": "limburg",
-      "place": "Heusden-Zolder"
     },
     {
       "id": "EVT22419864",
@@ -404,6 +384,26 @@
       "until": "2026-11-01",
       "province": "west-vlaanderen",
       "place": "Roeselare"
+    },
+    {
+      "id": "EVT22451359",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 50.92952,
+      "lon": 5.39376,
+      "until": "2026-12-18",
+      "province": "limburg",
+      "place": "Hasselt"
+    },
+    {
+      "id": "EVT22511472",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 51.08096,
+      "lon": 5.37882,
+      "until": "2028-02-28",
+      "province": "limburg",
+      "place": "Peer"
     }
   ]
 }

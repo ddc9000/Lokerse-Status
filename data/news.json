@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T00:58:33.073172",
+  "updated": "2026-10-26T01:46:07.484605",
   "items": [
     {
       "title": "Gemeenteraad en OCMW-raad van 29 oktober 2026",
@@ -32,6 +32,32 @@
       "published": "2026-10-26T12:00:00+00:00"
     },
     {
+      "title": "Lula nipt herkozen als president van Brazilië",
+      "link": "https://www.hln.be/buitenland/lula-nipt-herkozen-als-president-van-brazilie~ad76b10d/",
+      "description": "De linkse president Luiz Inácio Lula da Silva heeft de Braziliaanse presidentsverkiezingen gewonnen. Dat heeft de kiesraad zondag bekendgemaakt. Lula versloeg in de tweede ronde de extreemrechtse senator Flávio Bolsonaro",
+      "source": "HLN",
+      "province": "vlaanderen",
+      "provinces": [],
+      "places": [],
+      "pubDate": "26 okt 02:02",
+      "published": "2026-10-26T01:02:00+00:00"
+    },
+    {
+      "title": "100 jaar strijden voor Antwerpse welvaart: van een Mechelaar die basis voor chemie in haven heeft gelegd tot pionier die werknemers liet delen in de winst",
+      "link": "https://www.nieuwsblad.be/regio/antwerpen/regio-antwerpen/antwerpen/100-jaar-strijden-voor-antwerpse-welvaart-van-een-mechelaar-die-basis-voor-chemie-in-haven-heeft-gelegd-tot-pionier-die-werknemers-liet-delen-in-de-winst/163595383.html",
+      "description": "Het is honderd jaar geleden dat het Vlaams Economisch Verbond (VEV), de voorloper van werkgeversorganisatie Voka, werd opgericht. Dat wordt gevierd met het nieuwe boek De strijd voor welvaart - 100 jaar ondernemerschap i",
+      "source": "Nieuwsblad Antwerpen",
+      "province": "antwerpen",
+      "provinces": [
+        "antwerpen"
+      ],
+      "places": [
+        "Antwerpen"
+      ],
+      "pubDate": "26 okt 02:00",
+      "published": "2026-10-26T01:00:00+00:00"
+    },
+    {
       "title": "Wie is comeback kid Lula, die voor de 4e keer president van Brazilië wordt?",
       "link": "https://vrtnws.be/p.7nXLxRbbb",
       "description": "De sociaaldemocraat Luiz Inácio Lula da Silva (80) mag zich voor de 4e keer president van Brazilië noemen. Hij won de 2e ronde van de presidentsverkiezingen van zijn uitdager Flávio Bolsonaro. Nochtans had die Lula in de",
@@ -56,7 +82,7 @@
     {
       "title": "Veel ruimte voor opklaringen met een enkele wolk in Lokeren in de nacht",
       "link": "https://www.hln.be/lokeren/weer-lokeren~acc403de/",
-      "description": "Er is een kans op een buitje in Lokeren, maar grote hoeveelheden neerslag blijven uit. De maximumtemperatuur ligt rond de 13 graden. De wind is matig en gaat uit het zuidwesten waaien.",
+      "description": "Het gaat (licht) regenen in Lokeren. Het wordt een graad of 13. Er waait een matige zuidelijke wind.",
       "source": "HLN Lokeren",
       "province": "oost-vlaanderen",
       "provinces": [
@@ -86,7 +112,7 @@
     {
       "title": "Veel ruimte voor opklaringen met een enkele wolk in Brussel in de nacht",
       "link": "https://www.hln.be/brussel/weer-brussel~a3dc699d/",
-      "description": "Het is bewolkt en plaatselijk kan er wat (lichte) regen of een bui vallen in Brussel. De maximumtemperatuur ligt rond de 12 graden. Er waait een matige zuidwestelijke wind.",
+      "description": "Het is bewolkt en regenachtig in Brussel. De maximumtemperatuur ligt rond de 12 graden. De wind is matig en gaat uit het zuidwesten waaien.",
       "source": "HLN Brussel",
       "province": "brussel",
       "provinces": [
@@ -151,17 +177,6 @@
       "places": [
         "Hasselt"
       ],
-      "pubDate": "25 okt 23:59",
-      "published": "2026-10-25T22:59:00+00:00"
-    },
-    {
-      "title": "Een op tien uitbaters woonzorgcentra zit in financiële moeilijkheden",
-      "link": "https://www.standaard.be/binnenland/een-op-tien-uitbaters-woonzorgcentra-zit-in-financiele-moeilijkheden/163598907.html",
-      "description": "Bij bijna een op de tien uitbaters van woonzorgcentra dreigt de zorg in het gedrang te komen door financiële moeilijkheden. Bovendien gaan subsidies opvallend vaak niet naar de zorg.",
-      "source": "De Standaard",
-      "province": "vlaanderen",
-      "provinces": [],
-      "places": [],
       "pubDate": "25 okt 23:59",
       "published": "2026-10-25T22:59:00+00:00"
     },
@@ -270,19 +285,6 @@
       "places": [],
       "pubDate": "25 okt 21:24",
       "published": "2026-10-25T20:24:40+00:00"
-    },
-    {
-      "title": "Robbe Mertens en Thomas Wellens pakken winst voor Wortel tegen Wijnegem",
-      "link": "https://www.nieuwsblad.be/regio/antwerpen/regio-antwerpen/wijnegem/robbe-mertens-en-thomas-wellens-pakken-winst-voor-wortel-tegen-wijnegem/163600620.html",
-      "description": "Wortel heeft een goede zaak gedaan in het duel met Wijnegem zondag. De match eindigde na een ruststand van 1-1 op 1-2.",
-      "source": "Nieuwsblad Antwerpen",
-      "province": "antwerpen",
-      "provinces": [
-        "antwerpen"
-      ],
-      "places": [],
-      "pubDate": "25 okt 21:23",
-      "published": "2026-10-25T20:23:40+00:00"
     },
     {
       "title": "Union verplettert Cercle Brugge met vijf goals in de tweede helft",
@@ -839,7 +841,7 @@
     {
       "name": "GVA",
       "province": "antwerpen",
-      "count": 3
+      "count": 2
     },
     {
       "name": "HBVL",
