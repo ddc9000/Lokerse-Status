@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-26T23:12:10.311994",
+  "updated": "2026-10-27T02:11:15.870337",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
-  "warnings": 1,
+  "warnings": 2,
   "items": [
     {
       "id": "EVT22528575",
@@ -14,6 +14,16 @@
       "until": "",
       "province": "west-vlaanderen",
       "place": "Oostende"
+    },
+    {
+      "id": "EVT22529196",
+      "label": "Verstoord verkeer",
+      "severity": "warning",
+      "lat": 51.06853,
+      "lon": 4.34362,
+      "until": "",
+      "province": "antwerpen",
+      "place": "Willebroek"
     },
     {
       "id": "EVT22419864",
@@ -216,16 +226,6 @@
       "place": "Beringen"
     },
     {
-      "id": "EVT22529149",
-      "label": "Wegenwerken",
-      "severity": "info",
-      "lat": 51.19706,
-      "lon": 4.60123,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Lier"
-    },
-    {
       "id": "EVT22529152",
       "label": "Wegenwerken",
       "severity": "info",
@@ -269,11 +269,11 @@
       "id": "EVT22529086",
       "label": "Wegenwerken",
       "severity": "info",
-      "lat": 50.84052,
-      "lon": 3.34981,
+      "lat": 50.85124,
+      "lon": 3.38244,
       "until": "",
       "province": "west-vlaanderen",
-      "place": "Kortrijk"
+      "place": "Waregem"
     },
     {
       "id": "EVT22290741",

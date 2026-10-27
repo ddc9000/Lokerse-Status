@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-26T23:12:09.258781",
+  "updated": "2026-10-27T02:11:14.472191",
   "source": "Open-Meteo",
   "locations": {
     "west-vlaanderen": {
       "id": "west-vlaanderen",
       "name": "Brugge",
       "temp": 13,
-      "windspeed": 22.7,
+      "windspeed": 22.0,
       "weathercode": 3,
       "description": "Bewolkt",
       "max": 15,
@@ -15,8 +15,8 @@
     "oost-vlaanderen": {
       "id": "oost-vlaanderen",
       "name": "Gent",
-      "temp": 12,
-      "windspeed": 20.9,
+      "temp": 13,
+      "windspeed": 20.2,
       "weathercode": 3,
       "description": "Bewolkt",
       "max": 16,
@@ -25,28 +25,28 @@
     "antwerpen": {
       "id": "antwerpen",
       "name": "Antwerpen",
-      "temp": 12,
+      "temp": 13,
       "windspeed": 19.8,
       "weathercode": 3,
       "description": "Bewolkt",
-      "max": 16,
+      "max": 17,
       "min": 11
     },
     "limburg": {
       "id": "limburg",
       "name": "Hasselt",
       "temp": 12,
-      "windspeed": 19.4,
+      "windspeed": 18.4,
       "weathercode": 3,
       "description": "Bewolkt",
       "max": 18,
-      "min": 10
+      "min": 11
     },
     "vlaams-brabant": {
       "id": "vlaams-brabant",
       "name": "Leuven",
-      "temp": 12,
-      "windspeed": 15.5,
+      "temp": 13,
+      "windspeed": 18.0,
       "weathercode": 3,
       "description": "Bewolkt",
       "max": 18,
@@ -55,8 +55,8 @@
     "brussel": {
       "id": "brussel",
       "name": "Brussel",
-      "temp": 12,
-      "windspeed": 19.1,
+      "temp": 13,
+      "windspeed": 19.4,
       "weathercode": 3,
       "description": "Bewolkt",
       "max": 18,
@@ -65,7 +65,7 @@
     "lokerse-streek": {
       "id": "lokerse-streek",
       "name": "Lokeren",
-      "temp": 12,
+      "temp": 13,
       "windspeed": 19.4,
       "weathercode": 3,
       "description": "Bewolkt",
@@ -75,7 +75,7 @@
     "vlaanderen": {
       "id": "vlaanderen",
       "name": "Vlaanderen",
-      "temp": 12,
+      "temp": 13,
       "windspeed": 19.7,
       "weathercode": 0,
       "description": "Bewolkt",
