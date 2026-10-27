@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-27T19:42:57.600151",
+  "updated": "2026-10-27T23:16:39.687360",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
-  "warnings": 1,
+  "warnings": 2,
   "items": [
     {
       "id": "EVT22528575",
@@ -16,6 +16,16 @@
       "place": "Oostende"
     },
     {
+      "id": "EVT22531815",
+      "label": "Verstoord verkeer",
+      "severity": "warning",
+      "lat": 50.95497,
+      "lon": 5.6715,
+      "until": "",
+      "province": "limburg",
+      "place": "Maasmechelen"
+    },
+    {
       "id": "EVT22419864",
       "label": "Weg afgesloten",
       "severity": "info",
@@ -24,6 +34,16 @@
       "until": "2026-11-17",
       "province": "limburg",
       "place": "Lommel"
+    },
+    {
+      "id": "EVT22530982",
+      "label": "Weg afgesloten",
+      "severity": "info",
+      "lat": 50.80094,
+      "lon": 4.46502,
+      "until": "2026-10-28",
+      "province": "vlaams-brabant",
+      "place": "Tervuren"
     },
     {
       "id": "EVT22429487",
@@ -94,6 +114,16 @@
       "until": "2027-01-04",
       "province": "antwerpen",
       "place": "Lier"
+    },
+    {
+      "id": "EVT22531814",
+      "label": "Weg afgesloten",
+      "severity": "info",
+      "lat": 50.77801,
+      "lon": 4.11808,
+      "until": "2026-11-06",
+      "province": "oost-vlaanderen",
+      "place": "Ninove"
     },
     {
       "id": "EVT22431739",
@@ -199,11 +229,31 @@
       "id": "EVT22531757",
       "label": "Wegenwerken",
       "severity": "info",
-      "lat": 50.91327,
-      "lon": 4.45622,
+      "lat": 50.91346,
+      "lon": 4.45639,
       "until": "",
       "province": "vlaams-brabant",
       "place": "Zaventem"
+    },
+    {
+      "id": "EVT22531809",
+      "label": "Wegenwerken",
+      "severity": "info",
+      "lat": 51.16108,
+      "lon": 4.38448,
+      "until": "",
+      "province": "antwerpen",
+      "place": "Antwerpen"
+    },
+    {
+      "id": "EVT22531797",
+      "label": "Wegenwerken",
+      "severity": "info",
+      "lat": 51.0006,
+      "lon": 5.22108,
+      "until": "",
+      "province": "limburg",
+      "place": "Beringen"
     },
     {
       "id": "EVT22531770",
@@ -234,6 +284,16 @@
       "until": "",
       "province": "vlaams-brabant",
       "place": "Zaventem"
+    },
+    {
+      "id": "EVT22531794",
+      "label": "Wegenwerken",
+      "severity": "info",
+      "lat": 51.17642,
+      "lon": 4.41617,
+      "until": "",
+      "province": "antwerpen",
+      "place": "Mortsel"
     },
     {
       "id": "EVT22290741",
@@ -344,66 +404,6 @@
       "until": "2026-11-30",
       "province": "west-vlaanderen",
       "place": "Brugge"
-    },
-    {
-      "id": "EVT22443545",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 51.03355,
-      "lon": 4.10766,
-      "until": "2026-11-30",
-      "province": "oost-vlaanderen",
-      "place": "Dendermonde"
-    },
-    {
-      "id": "EVT22345093",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 50.9765,
-      "lon": 3.10738,
-      "until": "2026-11-01",
-      "province": "west-vlaanderen",
-      "place": "Roeselare"
-    },
-    {
-      "id": "EVT22451359",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 50.92952,
-      "lon": 5.39376,
-      "until": "2026-12-18",
-      "province": "limburg",
-      "place": "Hasselt"
-    },
-    {
-      "id": "EVT22511472",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 51.08096,
-      "lon": 5.37882,
-      "until": "2028-02-28",
-      "province": "limburg",
-      "place": "Peer"
-    },
-    {
-      "id": "EVT22491853",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 51.21336,
-      "lon": 3.20103,
-      "until": "2026-11-13",
-      "province": "west-vlaanderen",
-      "place": "Brugge"
-    },
-    {
-      "id": "EVT22501252",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 51.05278,
-      "lon": 4.77981,
-      "until": "2026-11-06",
-      "province": "antwerpen",
-      "place": "Heist-op-den-Berg"
     }
   ]
 }

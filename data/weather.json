@@ -1,86 +1,86 @@
 {
-  "updated": "2026-10-27T19:42:56.028532",
+  "updated": "2026-10-27T23:16:38.271340",
   "source": "Open-Meteo",
   "locations": {
     "west-vlaanderen": {
       "id": "west-vlaanderen",
       "name": "Brugge",
-      "temp": 12,
-      "windspeed": 13.7,
-      "weathercode": 0,
-      "description": "Helder",
-      "max": 16,
-      "min": 10
+      "temp": 10,
+      "windspeed": 10.1,
+      "weathercode": 3,
+      "description": "Bewolkt",
+      "max": 14,
+      "min": 7
     },
     "oost-vlaanderen": {
       "id": "oost-vlaanderen",
       "name": "Gent",
-      "temp": 12,
-      "windspeed": 13.3,
-      "weathercode": 0,
-      "description": "Helder",
-      "max": 16,
-      "min": 10
+      "temp": 10,
+      "windspeed": 10.4,
+      "weathercode": 1,
+      "description": "Overwegend helder",
+      "max": 14,
+      "min": 8
     },
     "antwerpen": {
       "id": "antwerpen",
       "name": "Antwerpen",
-      "temp": 14,
-      "windspeed": 14.0,
-      "weathercode": 3,
-      "description": "Bewolkt",
-      "max": 17,
-      "min": 11
+      "temp": 11,
+      "windspeed": 11.5,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 14,
+      "min": 9
     },
     "limburg": {
       "id": "limburg",
       "name": "Hasselt",
-      "temp": 14,
-      "windspeed": 11.2,
-      "weathercode": 3,
-      "description": "Bewolkt",
-      "max": 18,
-      "min": 12
+      "temp": 11,
+      "windspeed": 13.0,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 14,
+      "min": 8
     },
     "vlaams-brabant": {
       "id": "vlaams-brabant",
       "name": "Leuven",
-      "temp": 14,
-      "windspeed": 12.2,
-      "weathercode": 3,
-      "description": "Bewolkt",
-      "max": 18,
-      "min": 12
+      "temp": 11,
+      "windspeed": 11.5,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 14,
+      "min": 8
     },
     "brussel": {
       "id": "brussel",
       "name": "Brussel",
-      "temp": 14,
-      "windspeed": 14.0,
-      "weathercode": 2,
-      "description": "Gedeeltelijk bewolkt",
-      "max": 18,
-      "min": 11
+      "temp": 11,
+      "windspeed": 10.8,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 15,
+      "min": 8
     },
     "lokerse-streek": {
       "id": "lokerse-streek",
       "name": "Lokeren",
-      "temp": 13,
-      "windspeed": 13.7,
-      "weathercode": 1,
-      "description": "Overwegend helder",
-      "max": 17,
-      "min": 10
+      "temp": 9,
+      "windspeed": 9.4,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 14,
+      "min": 7
     },
     "vlaanderen": {
       "id": "vlaanderen",
       "name": "Vlaanderen",
-      "temp": 13,
-      "windspeed": 12.9,
+      "temp": 11,
+      "windspeed": 11.3,
       "weathercode": 0,
-      "description": "Bewolkt",
-      "max": 17,
-      "min": 11
+      "description": "Helder",
+      "max": 14,
+      "min": 8
     }
   }
 }
