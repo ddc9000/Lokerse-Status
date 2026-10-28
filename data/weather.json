@@ -1,52 +1,52 @@
 {
-  "updated": "2026-10-27T23:16:38.271340",
+  "updated": "2026-10-28T02:26:38.284515",
   "source": "Open-Meteo",
   "locations": {
     "west-vlaanderen": {
       "id": "west-vlaanderen",
       "name": "Brugge",
-      "temp": 10,
-      "windspeed": 10.1,
-      "weathercode": 3,
-      "description": "Bewolkt",
-      "max": 14,
+      "temp": 8,
+      "windspeed": 9.4,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 15,
       "min": 7
     },
     "oost-vlaanderen": {
       "id": "oost-vlaanderen",
       "name": "Gent",
-      "temp": 10,
+      "temp": 9,
       "windspeed": 10.4,
-      "weathercode": 1,
-      "description": "Overwegend helder",
-      "max": 14,
+      "weathercode": 0,
+      "description": "Helder",
+      "max": 15,
       "min": 8
     },
     "antwerpen": {
       "id": "antwerpen",
       "name": "Antwerpen",
-      "temp": 11,
-      "windspeed": 11.5,
+      "temp": 10,
+      "windspeed": 10.8,
       "weathercode": 0,
       "description": "Helder",
-      "max": 14,
+      "max": 15,
       "min": 9
     },
     "limburg": {
       "id": "limburg",
       "name": "Hasselt",
-      "temp": 11,
-      "windspeed": 13.0,
+      "temp": 9,
+      "windspeed": 11.9,
       "weathercode": 0,
       "description": "Helder",
       "max": 14,
-      "min": 8
+      "min": 7
     },
     "vlaams-brabant": {
       "id": "vlaams-brabant",
       "name": "Leuven",
-      "temp": 11,
-      "windspeed": 11.5,
+      "temp": 9,
+      "windspeed": 9.7,
       "weathercode": 0,
       "description": "Helder",
       "max": 14,
@@ -55,8 +55,8 @@
     "brussel": {
       "id": "brussel",
       "name": "Brussel",
-      "temp": 11,
-      "windspeed": 10.8,
+      "temp": 9,
+      "windspeed": 11.2,
       "weathercode": 0,
       "description": "Helder",
       "max": 15,
@@ -65,8 +65,8 @@
     "lokerse-streek": {
       "id": "lokerse-streek",
       "name": "Lokeren",
-      "temp": 9,
-      "windspeed": 9.4,
+      "temp": 8,
+      "windspeed": 10.8,
       "weathercode": 0,
       "description": "Helder",
       "max": 14,
@@ -75,11 +75,11 @@
     "vlaanderen": {
       "id": "vlaanderen",
       "name": "Vlaanderen",
-      "temp": 11,
-      "windspeed": 11.3,
+      "temp": 9,
+      "windspeed": 10.4,
       "weathercode": 0,
       "description": "Helder",
-      "max": 14,
+      "max": 15,
       "min": 8
     }
   }
