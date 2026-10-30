@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T23:25:21.899867",
+  "updated": "2026-10-30T02:43:05.498256",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
@@ -146,16 +146,6 @@
       "place": "Brugge"
     },
     {
-      "id": "EVT22537418",
-      "label": "Weg afgesloten",
-      "severity": "info",
-      "lat": 50.86303,
-      "lon": 4.44407,
-      "until": "",
-      "province": "vlaams-brabant",
-      "place": "Zaventem"
-    },
-    {
       "id": "EVT22537444",
       "label": "Weg afgesloten",
       "severity": "info",
@@ -224,16 +214,6 @@
       "until": "",
       "province": "vlaams-brabant",
       "place": "Vilvoorde"
-    },
-    {
-      "id": "EVT22537434",
-      "label": "Wegenwerken",
-      "severity": "info",
-      "lat": 51.23865,
-      "lon": 4.42669,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Antwerpen"
     },
     {
       "id": "EVT22537445",
@@ -404,6 +384,26 @@
       "until": "2027-07-30",
       "province": "west-vlaanderen",
       "place": "Knokke-Heist"
+    },
+    {
+      "id": "EVT22513540",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 51.26444,
+      "lon": 4.41053,
+      "until": "2026-11-18",
+      "province": "antwerpen",
+      "place": "Antwerpen"
+    },
+    {
+      "id": "EVT22347946",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 50.85583,
+      "lon": 4.64645,
+      "until": "2026-12-31",
+      "province": "vlaams-brabant",
+      "place": "Leuven"
     }
   ]
 }
