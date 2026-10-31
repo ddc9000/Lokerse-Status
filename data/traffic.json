@@ -1,89 +1,59 @@
 {
-  "updated": "2026-10-31T11:37:31.787632",
+  "updated": "2026-10-31T16:21:51.658575",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
-  "warnings": 8,
+  "warnings": 5,
   "items": [
     {
-      "id": "EVT22539884",
+      "id": "EVT22540068",
       "label": "Verstoord verkeer",
       "severity": "warning",
-      "lat": 51.21317,
-      "lon": 4.34899,
+      "lat": 50.90241,
+      "lon": 4.32647,
       "until": "",
-      "province": "antwerpen",
-      "place": "Antwerpen"
+      "province": "brussel",
+      "place": "Sint-Jans-Molenbeek"
     },
     {
-      "id": "EVT22539926",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 51.21264,
-      "lon": 4.36218,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Antwerpen"
-    },
-    {
-      "id": "EVT22539929",
+      "id": "EVT22540125",
       "label": "Verstoord verkeer",
       "severity": "warning",
       "lat": 51.21078,
-      "lon": 4.46666,
+      "lon": 4.48573,
       "until": "",
       "province": "antwerpen",
       "place": "Mortsel"
     },
     {
-      "id": "EVT22539911",
+      "id": "EVT22540119",
       "label": "Verstoord verkeer",
       "severity": "warning",
-      "lat": 51.3602,
-      "lon": 4.63742,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Hoogstraten"
-    },
-    {
-      "id": "EVT22539880",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 50.98971,
-      "lon": 3.17594,
-      "until": "",
-      "province": "west-vlaanderen",
-      "place": "Roeselare"
-    },
-    {
-      "id": "EVT22539928",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 51.19312,
-      "lon": 4.42987,
-      "until": "",
-      "province": "antwerpen",
-      "place": "Mortsel"
-    },
-    {
-      "id": "EVT22539894",
-      "label": "Verstoord verkeer",
-      "severity": "warning",
-      "lat": 50.81618,
-      "lon": 4.47455,
+      "lat": 50.83321,
+      "lon": 4.4833,
       "until": "",
       "province": "vlaams-brabant",
       "place": "Tervuren"
     },
     {
-      "id": "EVT22539912",
+      "id": "EVT22539935",
       "label": "Verstoord verkeer",
       "severity": "warning",
-      "lat": 50.91473,
-      "lon": 4.38125,
+      "lat": 50.85825,
+      "lon": 4.27179,
       "until": "",
       "province": "vlaams-brabant",
-      "place": "Vilvoorde"
+      "place": "Dilbeek"
+    },
+    {
+      "id": "EVT22540109",
+      "label": "Verstoord verkeer",
+      "severity": "warning",
+      "lat": 50.88189,
+      "lon": 4.28429,
+      "until": "",
+      "province": "vlaams-brabant",
+      "place": "Dilbeek"
     },
     {
       "id": "EVT22290717",
@@ -404,6 +374,36 @@
       "until": "2027-07-30",
       "province": "west-vlaanderen",
       "place": "Knokke-Heist"
+    },
+    {
+      "id": "EVT22513540",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 51.26444,
+      "lon": 4.41053,
+      "until": "2026-11-18",
+      "province": "antwerpen",
+      "place": "Antwerpen"
+    },
+    {
+      "id": "EVT22538048",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 50.81309,
+      "lon": 3.09692,
+      "until": "2026-11-04",
+      "province": "west-vlaanderen",
+      "place": "Roeselare"
+    },
+    {
+      "id": "EVT22347946",
+      "label": "Nieuwe wegenwerken",
+      "severity": "info",
+      "lat": 50.85583,
+      "lon": 4.64645,
+      "until": "2026-12-31",
+      "province": "vlaams-brabant",
+      "place": "Leuven"
     }
   ]
 }
