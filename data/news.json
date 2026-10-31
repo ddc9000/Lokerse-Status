@@ -1,43 +1,233 @@
 {
-  "updated": "2026-10-30T20:55:17.696227",
+  "updated": "2026-10-31T00:11:34.339162",
   "items": [
     {
-      "title": "Deze voetbalclub heeft begrafenisondernemer als coach: “Sommige spelers kende ik al via uitvaart van grootouders”",
-      "link": "https://www.nieuwsblad.be/sport/voetbal/deze-voetbalclub-heeft-begrafenisondernemer-als-coach-sommige-spelers-kende-ik-al-via-uitvaart-van-grootouders/163850393.html",
-      "description": "Allerheiligen en voetbal gaan dit weekend hand in hand. Niels Lenaerts (37) is naast begrafenisondernemer ook coach van vierdeprovincialer JB Eigenbilzen. “Sommige spelers kende ik al via de uitvaart van hun grootouders.",
+      "title": "Chef Antonio van Don Carbo maakt zijn verse pasta voor het raam: “Elke dag stoppen hier mensen om te kijken”",
+      "link": "https://www.nieuwsblad.be/regio/antwerpen/regio-antwerpen/antwerpen/chef-antonio-van-don-carbo-maakt-zijn-verse-pasta-voor-het-raam-elke-dag-stoppen-hier-mensen-om-te-kijken/163810043.html",
+      "description": "Bij het pas geopende Don Carbo op de Sint-Jorispoort in Antwerpen draait alles om het meest beroemde ingrediënt van Italië. De Napolitaanse chef Antonio Neri maakt er elke dag verse pasta voor het raam en serveert het re",
+      "source": "Nieuwsblad Antwerpen",
+      "province": "antwerpen",
+      "provinces": [
+        "antwerpen"
+      ],
+      "places": [
+        "Antwerpen"
+      ],
+      "pubDate": "31 okt 01:00",
+      "published": "2026-10-31T00:00:00+00:00"
+    },
+    {
+      "title": "Coca-Cola sprankelt, Pepsico smaakt vooral zout",
+      "link": "https://www.standaard.be/economie/geld/coca-cola-sprankelt-pepsico-smaakt-vooral-zout/163716948.html",
+      "description": "Pepsico is dankzij zijn chips en snacks in omzet dubbel zo groot geworden als Coca-Cola, maar in beurswaarde reikt het maar tot de helft. Voor beleggers heeft Coca-Cola een veel beter bedrijfsmodel dan Pepsico.",
+      "source": "De Standaard",
+      "province": "vlaanderen",
+      "provinces": [],
+      "places": [],
+      "pubDate": "31 okt 01:00",
+      "published": "2026-10-31T00:00:00+00:00"
+    },
+    {
+      "title": "Vandaag biedt AI vooral kansen aan Nvidia en co.",
+      "link": "https://www.standaard.be/economie/geld/vandaag-biedt-ai-vooral-kansen-aan-nvidia-en-co./163698172.html",
+      "description": "Techkenners en fondsbeheerders denken dat de AI-revolutie nog in een vroege fase zit. Ze focussen nu op bedrijven die cruciaal zijn in de opbouw van de AI-infrastructuur, met op kop wereldleiders als Nvidia en TSMC.",
+      "source": "De Standaard",
+      "province": "vlaanderen",
+      "provinces": [],
+      "places": [],
+      "pubDate": "31 okt 01:00",
+      "published": "2026-10-31T00:00:00+00:00"
+    },
+    {
+      "title": "LIVE. Max Verstappen ruziet met Liam Lawson in tweede vrije training, Charles Leclerc wederom de snelste",
+      "link": "https://www.hln.be/formule-1/live-max-verstappen-ruziet-met-liam-lawson-in-tweede-vrije-training-charles-leclerc-wederom-de-snelste~a2dde4d2/",
+      "description": "Het Formule 1-circus strijkt komend weekend neer in Mexico-Stad. Kimi Antonelli krijgt een tweede kans om zich te verzekeren van de wereldtitel: als hij negende of beter eindigt, mag hij zich de jongste wereldkampioen oo",
+      "source": "HLN",
+      "province": "vlaanderen",
+      "provinces": [],
+      "places": [],
+      "pubDate": "31 okt 00:10",
+      "published": "2026-10-30T23:10:00+00:00"
+    },
+    {
+      "title": "LIVE. Kortrijk gaat tegen Standard op zoek naar tweede zege van het seizoen",
+      "link": "https://www.hln.be/jupiler-pro-league/live-kortrijk-gaat-tegen-standard-op-zoek-naar-tweede-zege-van-het-seizoen~a363c583/",
+      "description": "KV Kortrijk staat in de gevarenzone met amper drie punten. Kunnen ze tegen Standard nog eens een zege boeken?",
+      "source": "HLN",
+      "province": "west-vlaanderen",
+      "provinces": [
+        "west-vlaanderen"
+      ],
+      "places": [
+        "Kortrijk"
+      ],
+      "pubDate": "31 okt 00:00",
+      "published": "2026-10-30T23:00:37+00:00"
+    },
+    {
+      "title": "LIVE. Manchester City en Jeremy Doku ontvangen het Brighton van Maxim De Cuyper",
+      "link": "https://www.hln.be/premier-league/live-manchester-city-en-jeremy-doku-ontvangen-het-brighton-van-maxim-de-cuyper~ab1c32f4/",
+      "description": "Manchester City en Brighton staan deze namiddag tegenover elkaar. Kunnen Jeremy Doku en co titelconcurrent Arsenal onder druk zetten tegen de ploeg van collega-Rode Duivel Maxim De Cuyper?",
+      "source": "HLN",
+      "province": "vlaanderen",
+      "provinces": [],
+      "places": [],
+      "pubDate": "31 okt 00:00",
+      "published": "2026-10-30T23:00:37+00:00"
+    },
+    {
+      "title": "Moord op Peltenaar na feestnacht in Antwerpen komt volgend jaar voor assisen",
+      "link": "https://www.nieuwsblad.be/regio/limburg/pelt/moord-op-peltenaar-na-feestnacht-in-antwerpen-komt-volgend-jaar-voor-assisen/163883107.html",
+      "description": "Rotterdammer Nsime Mfumu (42) moet zich volgend jaar voor assisen verantwoorden voor de moord op Mani Muzungu (34) uit Pelt. Hij werd op 6 januari 2024 met een bierflesje neergestoken na een feestnacht in Antwerpen.",
+      "source": "Nieuwsblad Limburg",
+      "province": "antwerpen",
+      "provinces": [
+        "antwerpen"
+      ],
+      "places": [
+        "Antwerpen"
+      ],
+      "pubDate": "30 okt 23:59",
+      "published": "2026-10-30T22:59:00+00:00"
+    },
+    {
+      "title": "Ook nieuwere huizen moeten verdwijnen voor Noord-Zuidverbinding: “Dochter heeft er traantjes om gelaten”",
+      "link": "https://www.nieuwsblad.be/regio/limburg/houthalen-helchteren/ook-nieuwere-huizen-moeten-verdwijnen-voor-noord-zuidverbinding-dochter-heeft-er-traantjes-om-gelaten/163887133.html",
+      "description": "De sloop van panden langs de Grote Baan in Houthalen-Helchteren gaat stevig vooruit. Na de Colruyt en Dreamland verdwijnen stilaan ook huizen uit het straatbeeld. En dat zijn niet enkel oude woningen, maar ook huizen die",
       "source": "Nieuwsblad Limburg",
       "province": "limburg",
       "provinces": [
         "limburg"
       ],
       "places": [],
-      "pubDate": "1 nov 03:00",
-      "published": "2026-11-01T02:00:00+00:00"
+      "pubDate": "30 okt 23:59",
+      "published": "2026-10-30T22:59:00+00:00"
     },
     {
-      "title": "Onrust in Warschau na schorsing voorzitter van Pools Grondwettelijk Hof",
-      "link": "https://www.standaard.be/buitenland/onrust-in-warschau-na-schorsing-voorzitter-van-pools-grondwettelijk-hof/163887154.html",
-      "description": "Aan het Grondwettelijk Hof in Warschau wordt betoogd, nadat bekend werd gemaakt dat de voorzitter van het Hof is geschorst. De Poolse premier Tusk heeft het over “het herstellen van de rechtsstaat”, oppositiepartij PiS c",
-      "source": "De Standaard",
-      "province": "vlaanderen",
-      "provinces": [],
+      "title": "Gebruik van private DNA-databanken voor moordonderzoek: “Ik ben er heel sceptisch over”",
+      "link": "https://www.hbvl.be/regio/limburg/gebruik-van-private-dna-databanken-voor-moordonderzoek-ik-ben-er-heel-sceptisch-over/163838475.html",
+      "description": "Een oude onopgeloste moordzaak in Nederlands-Limburg krijgt nieuwe input: in commerciële DNA-databanken in Amerika zijn mogelijke verwanten van de dader gevonden. Is het een goed idee om Belgische speurders in zulke data",
+      "source": "HBVL",
+      "province": "limburg",
+      "provinces": [
+        "limburg"
+      ],
       "places": [],
-      "pubDate": "30 okt 21:49",
-      "published": "2026-10-30T20:49:27+00:00"
+      "pubDate": "30 okt 23:59",
+      "published": "2026-10-30T22:59:00+00:00"
     },
     {
-      "title": "Kernkabinet om 21 uur afgelopen: “Geen doorbraken te noteren”",
-      "link": "https://www.hln.be/binnenland/kernkabinet-om-21-uur-afgelopen-geen-doorbraken-te-noteren~a9cb0fe2/",
-      "description": "Volg hier al het politieke nieuws.",
+      "title": "Stijn Meuris over het beeld van de week: Overleg",
+      "link": "https://www.nieuwsblad.be/regio/limburg/bilzen-hoeselt/stijn-meuris-over-het-beeld-van-de-week-overleg/163883985.html",
+      "description": "Muzikant en verteller Stijn Meuris schrijft over het beeld van de week.",
+      "source": "Nieuwsblad Limburg",
+      "province": "limburg",
+      "provinces": [
+        "limburg"
+      ],
+      "places": [],
+      "pubDate": "30 okt 23:59",
+      "published": "2026-10-30T22:59:00+00:00"
+    },
+    {
+      "title": "Essevee al bij rust uitgeteld door hyperefficiënt Club Brugge: “Dan moet je echt een serieuze berg beklimmen”",
+      "link": "https://www.nieuwsblad.be/sport/sportregio/essevee-al-bij-rust-uitgeteld-door-hyperefficient-club-brugge-dan-moet-je-echt-een-serieuze-berg-beklimmen/163775355.html",
+      "description": "Akkoord, Essevee scoorde tweemaal tegen de regerende landskampioen, maar coach Michael Beale heeft toch nog wat extra huiswerk meegekregen. Het herfstrapport is onverbiddelijk: 0 op 15 en Zulte Waregem moet zich dan ook ",
+      "source": "Nieuwsblad West-Vlaanderen",
+      "province": "west-vlaanderen",
+      "provinces": [
+        "west-vlaanderen"
+      ],
+      "places": [
+        "Waregem"
+      ],
+      "pubDate": "30 okt 23:52",
+      "published": "2026-10-30T22:52:00+00:00"
+    },
+    {
+      "title": "Poperingenaars Seppe en Loïc sneuvelen vlak voor de finale van Got Talent op VTM",
+      "link": "https://kw.be/nieuws/media/televisie/poperingenaars-seppe-en-loic-sneuvelen-vlak-voor-de-finale-van-got-talent-op-vtm/",
+      "description": "Seppe Beugnies (19) en Loïc Vandromme (19) uit Poperinge maakten opnieuw indruk op het podium van Got Talent op VTM, maar het levert hen evenwel geen ticket op naar de finale. Van de tien finalisten zijn er twee van onze",
+      "source": "KW",
+      "province": "west-vlaanderen",
+      "provinces": [
+        "west-vlaanderen"
+      ],
+      "places": [],
+      "pubDate": "30 okt 23:49",
+      "published": "2026-10-30T22:49:29+00:00"
+    },
+    {
+      "title": "Mogelijke vuurwerkbom blaast voordeur naar binnen in Maasmechelen",
+      "link": "https://www.hln.be/maasmechelen/mogelijke-vuurwerkbom-blaast-voordeur-naar-binnen-in-maasmechelen~a6c5876b/",
+      "description": "In de Neerveldstraat, in het Limburgse Maasmechelen, hebben onbekenden vrijdagavond een explosief naar een woning gegooid. De knal was zo hard dat de voordeur naar binnen geblazen werd.",
       "source": "HLN",
-      "province": "vlaanderen",
-      "provinces": [],
-      "places": [],
-      "pubDate": "30 okt 21:47",
-      "published": "2026-10-30T20:47:00+00:00"
+      "province": "limburg",
+      "provinces": [
+        "limburg"
+      ],
+      "places": [
+        "Maasmechelen"
+      ],
+      "pubDate": "30 okt 23:25",
+      "published": "2026-10-30T22:25:00+00:00"
     },
     {
-      "title": "Politieke crisis in Polen: voorzitter Grondwettelijk Hof geschorst, politie massaal aanwezig in Warschau",
+      "title": "Kjell Peersman werkt met Jong AA Gent perfecte wedstrijd af tegen ex-club Lierse: “Hun mindere prestatie doet niets af van onze partij”",
+      "link": "https://www.nieuwsblad.be/sport/sportregio/kjell-peersman-werkt-met-jong-aa-gent-perfecte-wedstrijd-af-tegen-ex-club-lierse-hun-mindere-prestatie-doet-niets-af-van-onze-partij/163649846.html",
+      "description": "De jonge Buffalo’s boekten vrijdagavond hun tweede opeenvolgende thuisoverwinning tegen een ontgoochelend Lierse, maar dat liet doelman Kjell Peersman niet aan het hart komen. “De duels tegen Lierse schrijf ik altijd met",
+      "source": "Nieuwsblad Oost-Vlaanderen",
+      "province": "oost-vlaanderen",
+      "provinces": [
+        "oost-vlaanderen"
+      ],
+      "places": [],
+      "pubDate": "30 okt 23:19",
+      "published": "2026-10-30T22:19:00+00:00"
+    },
+    {
+      "title": "Santy redt punt voor FC Marke B tegen Sparta Heestert B",
+      "link": "https://www.nieuwsblad.be/regio/west-vlaanderen/zuid-west-vlaanderen/zwevegem/santy-redt-punt-voor-fc-marke-b-tegen-sparta-heestert-b/163889816.html",
+      "description": "Sparta Heestert B verspeelde punten in de thuiswedstrijd tegen FC Marke B. Het duel eindigde op 1-1.",
+      "source": "Nieuwsblad West-Vlaanderen",
+      "province": "west-vlaanderen",
+      "provinces": [
+        "west-vlaanderen"
+      ],
+      "places": [],
+      "pubDate": "30 okt 22:59",
+      "published": "2026-10-30T21:59:40+00:00"
+    },
+    {
+      "title": "Winnende reeks van Lentezon eindigt na wedstrijd tegen Dessel Sport B",
+      "link": "https://www.gva.be/regio/antwerpen/kempen/dessel/winnende-reeks-van-lentezon-eindigt-na-wedstrijd-tegen-dessel-sport-b/163889396.html",
+      "description": "Lentezon’s reeks van zeven opeenvolgende overwinningen is geëindigd in de uitwedstrijd tegen Dessel Sport B. De wedstrijd van vrijdag eindigde op 5-4.",
+      "source": "GVA",
+      "province": "antwerpen",
+      "provinces": [
+        "antwerpen"
+      ],
+      "places": [],
+      "pubDate": "30 okt 22:34",
+      "published": "2026-10-30T21:34:40+00:00"
+    },
+    {
+      "title": "Vaes leidt THES Sport voorbij KVK Tienen",
+      "link": "https://www.nieuwsblad.be/regio/limburg/tessenderlo-ham/vaes-leidt-thes-sport-voorbij-kvk-tienen/163889244.html",
+      "description": "THES Sport won de thuiswedstrijd tegen KVK Tienen vrijdag met 1-0.",
+      "source": "Nieuwsblad Vlaams-Brabant",
+      "province": "vlaams-brabant",
+      "provinces": [
+        "vlaams-brabant"
+      ],
+      "places": [
+        "Tienen"
+      ],
+      "pubDate": "30 okt 22:26",
+      "published": "2026-10-30T21:26:41+00:00"
+    },
+    {
+      "title": "Constitutionele crisis in Polen: voorzitter Grondwettelijk Hof geschorst, politie massaal aanwezig in Warschau",
       "link": "https://vrtnws.be/p.APQoBmoEw",
       "description": "De politieke crisis in Polen rond het Grondwettelijk Hof blijft verder escaleren. President Karol Nawrocki heeft vrijdag zijn officiële reis naar Senegal onderbroken en keert terug naar Warschau, nadat berichten waren op",
       "source": "VRT NWS",
@@ -48,56 +238,15 @@
       "published": "2026-10-30T20:46:39+00:00"
     },
     {
-      "title": "Medeoprichter Binance vraagt aan Musk niet te spotten met cryptohack: “Het zou fijn zijn als je een beetje steun toont”",
-      "link": "https://www.hln.be/tech/medeoprichter-binance-vraagt-aan-musk-niet-te-spotten-met-cryptohack-het-zou-fijn-zijn-als-je-een-beetje-steun-toont~a2665e51/",
-      "description": "Changpen Zhao, medeoprichter van cryptobeurs Binance, heeft Elon Musk gevraagd om te stoppen met het spotten over de aanval die het bedrijf heeft getroffen. Bij die aanval op de cryptobeurs is voor 6,3 miljard dollar (5,",
-      "source": "HLN",
+      "title": "Inwoners niet verbaasd dat hun Merksplas de Beste Gemeente van Vlaanderen is: “Ik zou niet weten waarom ik hier óóit weg zou gaan”",
+      "link": "https://www.hln.be/merksplas/inwoners-niet-verbaasd-dat-hun-merksplas-de-beste-gemeente-van-vlaanderen-is-ik-zou-niet-weten-waarom-ik-hier-ooit-weg-zou-gaan~a021d983/",
+      "description": "Feest in Merksplas! Met een score van 78 op 100 mag de Kempense winnaar zich sinds vrijdagavond de Beste Gemeente van Vlaanderen noemen. Het bijbehorende bord werd voor het gemeentehuis onthuld en heel wat inwoners vierd",
+      "source": "HLN Regio",
       "province": "vlaanderen",
       "provinces": [],
       "places": [],
-      "pubDate": "30 okt 21:39",
-      "published": "2026-10-30T20:39:00+00:00"
-    },
-    {
-      "title": "LIVE. Match al voor rust beslist? Club Brugge duikt rust in met 1-4 voorsprong",
-      "link": "https://www.hln.be/jupiler-pro-league/live-match-al-voor-rust-beslist-club-brugge-duikt-rust-in-met-1-4-voorsprong~ad4d2f58/",
-      "description": "Club Brugge is al vijf competitiewedstrijden op rij ongeslagen, en wil die reeks graag verderzetten op het veld van Zulte Waregem. Of dat lukt, leest u in deze liveblog.",
-      "source": "HLN",
-      "province": "west-vlaanderen",
-      "provinces": [
-        "west-vlaanderen"
-      ],
-      "places": [
-        "Waregem"
-      ],
-      "pubDate": "30 okt 21:33",
-      "published": "2026-10-30T20:33:00+00:00"
-    },
-    {
-      "title": "Kernkabinet zonder begrotingsakkoord uit elkaar",
-      "link": "https://www.standaard.be/politiek/kernkabinet-zonder-begrotingsakkoord-uit-elkaar/35089272.html",
-      "description": "Lees hier alle updates over de federale, Vlaamse, Waalse en Brusselse politiek.",
-      "source": "De Standaard",
-      "province": "brussel",
-      "provinces": [
-        "brussel"
-      ],
-      "places": [
-        "Brussel"
-      ],
-      "pubDate": "30 okt 21:25",
-      "published": "2026-10-30T20:25:00+00:00"
-    },
-    {
-      "title": "Houthi’s voeren opnieuw raketaanval uit op presidentieel paleis in Jemen",
-      "link": "https://www.standaard.be/buitenland/houthis-voeren-opnieuw-raketaanval-uit-op-presidentieel-paleis-in-jemen/35173881.html",
-      "description": "Volg hier de laatste ontwikkelingen in het Midden-Oosten.",
-      "source": "De Standaard",
-      "province": "vlaanderen",
-      "provinces": [],
-      "places": [],
-      "pubDate": "30 okt 21:09",
-      "published": "2026-10-30T20:09:50+00:00"
+      "pubDate": "30 okt 21:42",
+      "published": "2026-10-30T20:42:00+00:00"
     },
     {
       "title": "“Wat jullie na de rust hebben gezien, dát is Union”: Besfort Zeneli hoopt dat Union niet in dezelfde val trapt in Beveren",
@@ -128,32 +277,6 @@
       "places": [],
       "pubDate": "30 okt 21:07",
       "published": "2026-10-30T20:07:42+00:00"
-    },
-    {
-      "title": "Luminova lokt 30.000 bezoekers naar Thor Park: “We trekken alle registers open”",
-      "link": "https://www.nieuwsblad.be/regio/limburg/genk/luminova-lokt-30.000-bezoekers-naar-thor-park-we-trekken-alle-registers-open/163887407.html",
-      "description": "De eerste avond van Luminova zit erop. Voor het lichtfestival op Thor Park zijn al 30.000 tickets verkocht. De eerste reacties zijn overwegend positief over het parcours vol licht, technologie en verwondering.",
-      "source": "Nieuwsblad Limburg",
-      "province": "limburg",
-      "provinces": [
-        "limburg"
-      ],
-      "places": [],
-      "pubDate": "30 okt 21:06",
-      "published": "2026-10-30T20:06:24+00:00"
-    },
-    {
-      "title": "Kapitaalsverlaging bij Impermo: goudstaaf van 1 kilo voor elke familiale aandeelhouder",
-      "link": "https://www.nieuwsblad.be/regio/limburg/sint-truiden/kapitaalsverlaging-bij-impermo-goudstaaf-van-1-kilo-voor-elke-familiale-aandeelhouder/163886977.html",
-      "description": "De Truiense firma Impermo heeft haar kapitaal op een heel originele manier verminderd. De drie familiale aandeelhouders kregen elk een goudstaaf van 1 kilo.",
-      "source": "Nieuwsblad Limburg",
-      "province": "limburg",
-      "provinces": [
-        "limburg"
-      ],
-      "places": [],
-      "pubDate": "30 okt 20:51",
-      "published": "2026-10-30T19:51:35+00:00"
     },
     {
       "title": "KFC Voorde-Appelterre ontvangt KVK Ninove met ex-Ninovieter Boris Kamneng Djoum als gastheer: “Voor de eer van ploeg van ‘t stad”",
@@ -199,34 +322,17 @@
       "published": "2026-10-30T19:16:45+00:00"
     },
     {
-      "title": "“Mijn papa geeft soms wel harde feedback”: Vince T’Joncke ontvangt met Okapi Aalst de ex-club van vader Tibo",
-      "link": "https://www.nieuwsblad.be/sport/sportregio/mijn-papa-geeft-soms-wel-harde-feedback-vince-tjoncke-ontvangt-met-okapi-aalst-de-ex-club-van-vader-tibo/163629976.html",
-      "description": "Zaterdag ontvangt Okapi Aalst in het Forum met Bergen de hekkensluiter van de BNXT League. Voor Vince T’Joncke wordt het een speciale wedstrijd. De Laarnenaar blaast zaterdag negentien kaarsjes uit en Bergen is de ploeg ",
-      "source": "Nieuwsblad Oost-Vlaanderen",
-      "province": "oost-vlaanderen",
+      "title": "BRUZZ 24 over verkeersagressie: 'Het is hier ieder voor zich'",
+      "link": "https://www.bruzz.be/actua/samenleving/bruzz-24-over-verkeersagressie-het-hier-ieder-voor-zich-2026-10-30",
+      "description": "Herbekijk nu de uitzending van vrijdag 30 oktober",
+      "source": "BRUZZ",
+      "province": "brussel",
       "provinces": [
-        "oost-vlaanderen"
+        "brussel"
       ],
-      "places": [
-        "Aalst"
-      ],
-      "pubDate": "30 okt 20:16",
-      "published": "2026-10-30T19:16:00+00:00"
-    },
-    {
-      "title": "Politie houdt oogje in het zeil en sensibiliseert bezoekers op Oostendse begraafplaatsen tijdens Allerheiligen en Allerzielen",
-      "link": "https://kw.be/nieuws/criminaliteit/politie/politie-houdt-oogje-in-het-zeil-en-sensibiliseert-bezoekers-op-oostendse-begraafplaatsen-tijdens-allerheiligen-en-allerzielen/",
-      "description": "De stad Oostende vraagt extra aandacht voor respect en veiligheid op de begraafplaatsen tijdens Allerheiligen en Allerzielen. De politie zal op 1 en 2 november mee een oogje in het zeil houden en tegelijkertijd bezoekers",
-      "source": "KW",
-      "province": "west-vlaanderen",
-      "provinces": [
-        "west-vlaanderen"
-      ],
-      "places": [
-        "Oostende"
-      ],
-      "pubDate": "30 okt 20:14",
-      "published": "2026-10-30T19:14:08+00:00"
+      "places": [],
+      "pubDate": "30 okt 20:12",
+      "published": "2026-10-30T19:12:37+00:00"
     },
     {
       "title": "Nieuws vrijdag 30 oktober",
@@ -257,21 +363,6 @@
       "published": "2026-10-30T19:01:22+00:00"
     },
     {
-      "title": "Tiny Stories, laatste onafhankelijke boekhandel van Kortrijk, stopt eind dit jaar: “Bijzonder trots dat ik het geprobeerd heb”",
-      "link": "https://kw.be/nieuws/cultuur/boeken/tiny-stories-laatste-onafhankelijke-boekhandel-van-kortrijk-stopt-eind-dit-jaar-bijzonder-trots-dat-ik-het-geprobeerd-heb/",
-      "description": "Tiny Stories, de laatste onafhankelijke boekhandel van Kortrijk, stopt er eind dit jaar mee. Eerder had Natali Deckmyn al beslist om het huurcontract in de Onze-Lieve-Vrouwestraat niet te verlengen. Het is een domper op ",
-      "source": "KW",
-      "province": "west-vlaanderen",
-      "provinces": [
-        "west-vlaanderen"
-      ],
-      "places": [
-        "Kortrijk"
-      ],
-      "pubDate": "30 okt 20:00",
-      "published": "2026-10-30T19:00:00+00:00"
-    },
-    {
       "title": "Rik De Mil blijft nuchter ondanks Gentse hoogconjunctuur: “Als je enkel kijkt naar de punten, vergeet je te verbeteren”",
       "link": "https://www.nieuwsblad.be/sport/sportregio/rik-de-mil-blijft-nuchter-ondanks-gentse-hoogconjunctuur-als-je-enkel-kijkt-naar-de-punten-vergeet-je-te-verbeteren/163649851.html",
       "description": "Een week na de 4-0-zege tegen RSC Anderlecht werkt AA Gent zondagavond op bezoek bij Lommel SK alweer een lastige uitwedstrijd af. “Lommel heeft al genoeg getoond dat ze een aanwinst zijn voor de Jupiler Pro League”, too",
@@ -300,47 +391,6 @@
       "published": "2026-10-30T18:53:00+00:00"
     },
     {
-      "title": "Waarom kleine gemeenten in de Beste Gemeente van Vlaanderen beter scoren dan grootsteden: “Politici in grote steden werken nochtans even hard”",
-      "link": "https://www.hln.be/regio/waarom-kleine-gemeenten-in-de-beste-gemeente-van-vlaanderen-beter-scoren-dan-grootsteden-politici-in-grote-steden-werken-nochtans-even-hard~a50cc728/",
-      "description": "De stemmen zijn geteld, de winnaar is gekend: met een knappe score van 78 op 100 mag Merksplas zich met trots de Beste Gemeente van Vlaanderen noemen. De Kempense gemeente ging er in onze HLN Gemeentetest op alle tien do",
-      "source": "HLN Regio",
-      "province": "vlaanderen",
-      "provinces": [],
-      "places": [],
-      "pubDate": "30 okt 19:52",
-      "published": "2026-10-30T18:52:00+00:00"
-    },
-    {
-      "title": "Lichtfestival Dino Nights van start gegaan in Planckendael: “Stap in een wereld vol prehistorische reuzen”",
-      "link": "https://www.nieuwsblad.be/regio/antwerpen/rivierenland/mechelen/lichtfestival-dino-nights-van-start-gegaan-in-planckendael-stap-in-een-wereld-vol-prehistorische-reuzen/163884772.html",
-      "description": "Meer dan vijftig dinosaurussen nemen dit najaar Zoo Planckendael in Muizen (Mechelen) over. In het dierenpark ging vrijdag namelijk het lichtfestival Dino Nights van start. Dat neemt bezoekers dit jaar mee terug in de ti",
-      "source": "Nieuwsblad Antwerpen",
-      "province": "antwerpen",
-      "provinces": [
-        "antwerpen"
-      ],
-      "places": [
-        "Mechelen"
-      ],
-      "pubDate": "30 okt 19:44",
-      "published": "2026-10-30T18:44:37+00:00"
-    },
-    {
-      "title": "Zelfs de allerkleinsten proeven nu van ‘trick or treat’: “Erg leuk voor de kindjes en voor de buurt”",
-      "link": "https://www.nieuwsblad.be/regio/west-vlaanderen/westhoek/ieper/zelfs-de-allerkleinsten-proeven-nu-van-trick-or-treat-erg-leuk-voor-de-kindjes-en-voor-de-buurt/163841423.html",
-      "description": "Halloween kan zelfs de allerkleinsten bekoren. In de stadskern van Ieper trokken ze met hun ouders van deur tot deur voor ‘trick of treat’.",
-      "source": "Nieuwsblad West-Vlaanderen",
-      "province": "west-vlaanderen",
-      "provinces": [
-        "west-vlaanderen"
-      ],
-      "places": [
-        "Ieper"
-      ],
-      "pubDate": "30 okt 19:40",
-      "published": "2026-10-30T18:40:00+00:00"
-    },
-    {
       "title": "Twee mannen gewond bij steekpartij na ruzie in woning in Borgerhout",
       "link": "https://www.hln.be/antwerpen/twee-mannen-gewond-bij-steekpartij-na-ruzie-in-woning-in-borgerhout~a66e9b85/",
       "description": "Bij een steekpartij in het Antwerpse Borgerhout zijn vrijdagavond twee mannen gewond geraakt. Dat schrijft ‘Gazet van Antwerpen’ en wordt bevestigd door de politie. De feiten speelden zich af in een woning in de Gijselss",
@@ -354,47 +404,6 @@
       ],
       "pubDate": "30 okt 19:37",
       "published": "2026-10-30T18:37:00+00:00"
-    },
-    {
-      "title": "Maastricht maakt zich op voor mogelijke rellen",
-      "link": "https://www.tvl.be/nieuws/maastricht-maakt-zich-op-voor-mogelijke-rellen-183932",
-      "description": "Via sociale media roepen jongeren op om zaterdag 31 oktober op straat te komen in verschillende Nederlandse steden, waaronder Maastricht. Daarom zullen politie en handhaving zichtbaar aanwezig zijn. Dat meldt L1 Nieuws. ",
-      "source": "TVL",
-      "province": "limburg",
-      "provinces": [
-        "limburg"
-      ],
-      "places": [],
-      "pubDate": "30 okt 19:25",
-      "published": "2026-10-30T18:25:48+00:00"
-    },
-    {
-      "title": "Vier everzwijnen in één dag aangereden op Zuiderring in Geel: politie waarschuwt voor overstekend wild",
-      "link": "https://www.nieuwsblad.be/regio/antwerpen/kempen/geel/vier-everzwijnen-in-een-dag-aangereden-op-zuiderring-in-geel-politie-waarschuwt-voor-overstekend-wild/163883579.html",
-      "description": "Op de Zuiderring (R14) in Geel zijn donderdag vier everzwijnen aangereden, één in de ochtend en drie ‘s avonds. De politiezone Geel-Laakdal-Meerhout roept automobilisten op om extra voorzichtig te zijn. De aanrijdingen v",
-      "source": "Nieuwsblad Antwerpen",
-      "province": "antwerpen",
-      "provinces": [
-        "antwerpen"
-      ],
-      "places": [
-        "Geel"
-      ],
-      "pubDate": "30 okt 19:15",
-      "published": "2026-10-30T18:15:28+00:00"
-    },
-    {
-      "title": "Dirk Henri sluit winkel en verkoopt 600 palletten speelgoed aan halve prijs: “Ik verkoop alleen wat ik zelf aan mijn kinderen zou geven”",
-      "link": "https://www.nieuwsblad.be/binnenland/dirk-henri-sluit-winkel-en-verkoopt-600-palletten-speelgoed-aan-halve-prijs-ik-verkoop-alleen-wat-ik-zelf-aan-mijn-kinderen-zou-geven/163833711.html",
-      "description": "Lego, Playmobil of een puzzel? De lijstjes voor Sinterklaas worden stilaan opgemaakt. Wie een cadeau wil scoren, kan dit weekend zaakjes doen in Wevelgem. Dirk Henri (61) sluit daar na 14 jaar zijn speelgoedwinkel Toys O",
-      "source": "Nieuwsblad West-Vlaanderen",
-      "province": "west-vlaanderen",
-      "provinces": [
-        "west-vlaanderen"
-      ],
-      "places": [],
-      "pubDate": "30 okt 19:12",
-      "published": "2026-10-30T18:12:11+00:00"
     },
     {
       "title": "Kruispunt Bosdreef-N70 ruim een week afgesloten voor verkeer",
@@ -504,19 +513,19 @@
       "published": "2026-10-30T16:46:21+00:00"
     },
     {
-      "title": "Na gewelddadige home-invasion in Aarschot danken André (79) en Viviane (78) hun buurjongen (17): “‘Ga erachter, ge moet ze pakken’, riep ik”",
-      "link": "https://www.hln.be/aarschot/na-gewelddadige-home-invasion-in-aarschot-danken-andre-79-en-viviane-78-hun-buurjongen-17-ga-erachter-ge-moet-ze-pakken-riep-ik~a4015534/",
-      "description": "“Hij had mij goed te pakken. ‘Laat los’, riep hij. Maar ik hield hem met één vinger vast. ‘Als gij loslaat’, zei ik.” André (79) blikt terug op het gevecht met een van de twee gemaskerde mannen die dinsdag zijn woning in",
+      "title": "Average Rob opent derde vestiging van La Patate in Oostende: “De stad heeft dankzij ‘Spring’ altijd al een iconische connotatie in mijn hoofd”",
+      "link": "https://www.hln.be/oostende/average-rob-opent-derde-vestiging-van-la-patate-in-oostende-de-stad-heeft-dankzij-spring-altijd-al-een-iconische-connotatie-in-mijn-hoofd~a71b0292/",
+      "description": "“Oostende leeft en zit echt vol met generaties. Het is misschien wel het Californië van België.” Met die woorden gooide influencer en ondernemer Average Rob vrijdagmiddag de deuren open van de derde vestiging van zijn fr",
       "source": "HLN Regio",
-      "province": "vlaams-brabant",
+      "province": "west-vlaanderen",
       "provinces": [
-        "vlaams-brabant"
+        "west-vlaanderen"
       ],
       "places": [
-        "Aarschot"
+        "Oostende"
       ],
-      "pubDate": "30 okt 17:12",
-      "published": "2026-10-30T16:12:00+00:00"
+      "pubDate": "30 okt 17:28",
+      "published": "2026-10-30T16:28:00+00:00"
     },
     {
       "title": "Politie neemt chrystal meth en 95 flessen lachgas in beslag, verdachte aangehouden",
@@ -607,22 +616,6 @@
       ],
       "pubDate": "30 okt 15:17",
       "published": "2026-10-30T14:17:00+00:00"
-    },
-    {
-      "title": "Na verlies van zoontje Monk (2) kregen Eva (41) en Manten (46) jaar lang hulp dankzij 52 briefjes: “Wat zij voor ons deden, geven we nu aan iedereen”",
-      "link": "https://www.hln.be/mechelen/na-verlies-van-zoontje-monk-2-kregen-eva-41-en-manten-46-jaar-lang-hulp-dankzij-52-briefjes-wat-zij-voor-ons-deden-geven-we-nu-aan-iedereen~a64ca8ab/",
-      "description": "Vier jaar geleden verloren Eva Meyer (41) en Manten Van Gils (46) uit het Antwerpse Mechelen hun zoontje Monk (2). In de periode na zijn overlijden werden ze gedragen door hun vrienden en familie, die met 52 briefjes hun",
-      "source": "HLN Regio",
-      "province": "antwerpen",
-      "provinces": [
-        "antwerpen"
-      ],
-      "places": [
-        "Antwerpen",
-        "Mechelen"
-      ],
-      "pubDate": "30 okt 15:01",
-      "published": "2026-10-30T14:01:03+00:00"
     },
     {
       "title": "Fototentoonstelling 'Door onze wijze ogen' brengt verhalen van ouderen met een beperking in beeld",
@@ -778,13 +771,13 @@
   "count": 54,
   "scores": {
     "alles": 95,
-    "lokerse-streek": 83,
-    "west-vlaanderen": 86,
-    "oost-vlaanderen": 90,
-    "antwerpen": 80,
-    "limburg": 80,
+    "lokerse-streek": 79,
+    "west-vlaanderen": 88,
+    "oost-vlaanderen": 88,
+    "antwerpen": 75,
+    "limburg": 86,
     "vlaams-brabant": 83,
-    "brussel": 86
+    "brussel": 83
   },
   "sources": [
     {
@@ -815,7 +808,7 @@
     {
       "name": "Google Nieuws",
       "province": "oost-vlaanderen",
-      "count": 7
+      "count": 8
     },
     {
       "name": "Nieuwsblad West-Vlaanderen",
@@ -825,7 +818,7 @@
     {
       "name": "Nieuwsblad Oost-Vlaanderen",
       "province": "oost-vlaanderen",
-      "count": 6
+      "count": 4
     },
     {
       "name": "Nieuwsblad Antwerpen",
@@ -855,12 +848,12 @@
     {
       "name": "GVA",
       "province": "antwerpen",
-      "count": 0
+      "count": 2
     },
     {
       "name": "HBVL",
       "province": "limburg",
-      "count": 0
+      "count": 2
     },
     {
       "name": "TVL",

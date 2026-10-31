@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T20:55:19.757627",
+  "updated": "2026-10-31T00:11:36.152240",
   "source": "Verkeerscentrum Vlaanderen (DATEX II)",
   "license": "CC BY",
   "count": 40,
@@ -196,6 +196,26 @@
       "place": "Gent"
     },
     {
+      "id": "EVT22539742",
+      "label": "Wegenwerken",
+      "severity": "info",
+      "lat": 51.01108,
+      "lon": 5.2146,
+      "until": "",
+      "province": "limburg",
+      "place": "Beringen"
+    },
+    {
+      "id": "EVT22539762",
+      "label": "Wegenwerken",
+      "severity": "info",
+      "lat": 50.91174,
+      "lon": 4.39404,
+      "until": "",
+      "province": "vlaams-brabant",
+      "place": "Vilvoorde"
+    },
+    {
       "id": "EVT22539724",
       "label": "Wegenwerken",
       "severity": "info",
@@ -206,14 +226,14 @@
       "place": "Destelbergen"
     },
     {
-      "id": "EVT22539742",
+      "id": "EVT22539760",
       "label": "Wegenwerken",
       "severity": "info",
-      "lat": 51.02149,
-      "lon": 5.20666,
+      "lat": 50.91354,
+      "lon": 4.42051,
       "until": "",
-      "province": "limburg",
-      "place": "Beringen"
+      "province": "vlaams-brabant",
+      "place": "Vilvoorde"
     },
     {
       "id": "EVT22501406",
@@ -326,16 +346,6 @@
       "place": "Peer"
     },
     {
-      "id": "EVT22527281",
-      "label": "Beurtelings verkeer",
-      "severity": "info",
-      "lat": 51.11011,
-      "lon": 3.86832,
-      "until": "2026-10-30",
-      "province": "oost-vlaanderen",
-      "place": "Lochristi"
-    },
-    {
       "id": "EVT22485647",
       "label": "Nieuwe wegenwerken",
       "severity": "info",
@@ -394,16 +404,6 @@
       "until": "2026-11-27",
       "province": "limburg",
       "place": "Maasmechelen"
-    },
-    {
-      "id": "EVT22380991",
-      "label": "Nieuwe wegenwerken",
-      "severity": "info",
-      "lat": 50.82848,
-      "lon": 4.48287,
-      "until": "2028-07-31",
-      "province": "vlaams-brabant",
-      "place": "Tervuren"
     }
   ]
 }
